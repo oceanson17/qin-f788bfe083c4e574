@@ -350,6 +350,109 @@ body.noanim #dip{display:none}
 }
 @media (max-height:520px){#top{padding:3px 8px;}.ib{height:30px;}#stagewrap{padding:4px 4px 0;}#stage{max-width:calc(var(--vh)*30*1.7778);}#story{min-height:calc(var(--vh)*27);margin:7px 8px 0;}#sscroll{padding:10px 12px 12px;}#bottom{min-height:calc(var(--vh)*14);padding:6px 8px 2px;}.cbtn{min-height:36px;padding:6px 10px;}#freebox{padding:4px 8px calc(4px + var(--sab));}#free,.gobtn{height:36px;}#spk{width:56px;}#spk canvas{width:56px;height:56px;}}
 @media (prefers-reduced-motion:reduce){#more,#skip,#ebub{-webkit-animation:none;animation:none;}}
+
+/* ===== MUD 介面 ===== */
+:root{--mfont:"Sarasa Mono TC","Noto Sans Mono CJK TC","Source Han Mono TC","Cascadia Mono","SF Mono","Menlo","Consolas","PingFang TC","Microsoft JhengHei","Noto Sans TC",monospace;--mfs:16px}
+body.mt-green{--mbg:#040a05;--mbg2:#08140a;--mfg:#8fe39a;--mdim:#3f7a49;--mbd:#1d4a28}
+body.mt-amber{--mbg:#0b0600;--mbg2:#161006;--mfg:#ffb347;--mdim:#8a5a1a;--mbd:#5a3a10}
+body.mt-white{--mbg:#0b0b0d;--mbg2:#151518;--mfg:#e6e6e6;--mdim:#8a8a92;--mbd:#3a3a42}
+#mud{display:none;position:fixed;left:0;top:0;right:0;height:calc(var(--vh,1vh)*100);-webkit-flex-direction:column;flex-direction:column;background:var(--mbg,#040a05);color:var(--mfg,#8fe39a);font-family:var(--mfont);font-size:var(--mfs);z-index:2;padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) 0 env(safe-area-inset-left,0px);overflow:hidden}
+body.mud #mud{display:-webkit-flex;display:flex}
+body.mud #app{display:none!important}
+body.mud{background:var(--mbg,#040a05)}
+#mtop{position:relative;flex:0 0 auto;padding:4px 74px 4px 8px;background:var(--mbg2);border-bottom:1px solid var(--mbd);line-height:1.35;font-size:.82em}
+#mt1{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--mfg)}
+#mt2{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--mdim)}
+#mt1 b{color:#ffd75f}#mt1 .ttl{color:#ff87d7}
+.hb{display:inline-block;width:5.2em;height:.7em;border:1px solid var(--mdim);vertical-align:-1px;margin:0 .3em;position:relative}
+.hb i{position:absolute;left:0;top:0;bottom:0;background:#e0524a}
+.hb.ok i{background:#4ad06a}
+#mpanelbtn,#mmenubtn{position:absolute;top:3px;height:calc(100% - 6px);min-width:32px;background:transparent;border:1px solid var(--mdim);color:var(--mfg);font-size:1em;cursor:pointer;padding:0 6px;font-family:inherit}
+#mpanelbtn{right:38px}#mmenubtn{right:4px}
+#mmain{flex:1 1 auto;display:-webkit-flex;display:flex;min-height:0}
+#mcol{flex:1 1 auto;display:-webkit-flex;display:flex;-webkit-flex-direction:column;flex-direction:column;min-width:0;min-height:0}
+#mlog{flex:1 1 auto;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:8px 10px 6px;line-height:1.55;overscroll-behavior:contain;word-break:break-word}
+#mlog::-webkit-scrollbar{width:6px}#mlog::-webkit-scrollbar-thumb{background:var(--mdim)}
+.ln{white-space:pre-wrap;margin:0 0 2px}
+.ln.blk{margin:6px 0 4px}
+.c-echo{color:#ffffff;opacity:.9}
+.c-echo:before{content:""}
+.c-room{color:#ffd75f;font-weight:bold;letter-spacing:.05em}
+.c-date{color:var(--mdim);font-size:.85em}
+.c-desc{color:var(--mfg)}
+.c-exit,.mlink{color:#5fd7ff;cursor:pointer;text-decoration:none;border-bottom:1px dotted #5fd7ff}
+.c-lab{color:#ffaf5f}
+.c-sys{color:#5f87ff}
+.c-note{color:#ffd75f}
+.c-bad{color:#ff6b6b}.c-good{color:#6dffa0}.c-hit{color:#ffaf5f}.c-dim{color:var(--mdim)}
+.c-npc{font-weight:bold}
+.c-title{color:#ffd75f;line-height:1.25;text-align:left;white-space:pre}
+.c-pre{white-space:pre-wrap;color:var(--mfg)}
+.c-warn{color:#ff9a5a}
+.c-spk{color:#ff87d7;font-weight:bold}
+.c-tag{color:#ffd75f;font-size:.85em}
+.fx{color:#6dffa0;font-size:.92em}.hd{color:#ffd75f;font-weight:bold}.say{color:#ffe9a8}.ai{color:#8fd3ff}
+.cl-hit{color:#ffaf5f}.cl-bad{color:#ff6b6b}.cl-dim{color:#7fd6d6}.cl-good{color:#6dffa0}.cl-hd{color:#ffd75f;font-weight:bold}
+.mchs{display:-webkit-flex;display:flex;flex-wrap:wrap;gap:4px 6px;margin:4px 0 8px}
+.mchs.stale{opacity:.38;pointer-events:none}
+.mchs .cg{flex-basis:100%;color:#ffaf5f;font-size:.85em;margin-top:3px}
+.mch{background:transparent;border:1px solid var(--mdim);color:var(--mfg);font-family:inherit;font-size:.95em;padding:4px 8px;cursor:pointer;text-align:left;line-height:1.35;border-radius:0;min-height:34px}
+.mch b{color:#ffd75f;margin-right:.35em}
+.mch:hover,.mch:active{background:var(--mfg);color:#000}.mch:hover b,.mch:active b{color:#000}
+.mch.wide{flex-basis:100%}
+.mch.ai{border-color:#5f87ff;color:#8fb0ff}
+.mch.back{color:var(--mdim)}
+.mm{display:inline-block;margin:2px 0 4px;line-height:1.15}
+.mm .mr{display:-webkit-flex;display:flex}
+.mm .mc{width:3.6em;height:1.9em;display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;-webkit-justify-content:center;justify-content:center;border:1px solid transparent;font-size:.85em;white-space:nowrap}
+.mm .mc.on{border:1px solid var(--mdim);color:#5fd7ff;cursor:pointer}
+.mm .mc.me{border:1px solid #ffd75f;color:#ffd75f;font-weight:bold}
+.mm .mc.dead{color:var(--mdim)}
+.mpic{display:block;width:160px;height:90px;border:1px solid var(--mdim);margin:3px 0 5px;image-rendering:pixelated}
+#mext{flex:0 0 auto;padding:0 8px}
+#mext #aioffer{margin:2px 0}
+#mext #aioffer .cbtn{width:100%;background:transparent;border:1px solid #5f87ff;color:#8fb0ff;padding:5px 8px;text-align:left;box-shadow:none;font-family:inherit;min-height:34px;font-size:.92em}
+#mext #aibar{margin:2px 0;font-size:.85em;padding:3px 6px;background:#1a0f0c;border:1px solid #c0503a}
+#mext #aibar.wait{background:#0c1622;border-color:#4a7aa8}
+#mchips{flex:0 0 auto;display:-webkit-flex;display:flex;gap:4px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding:3px 8px;border-top:1px solid var(--mbd);scrollbar-width:none}
+#mchips::-webkit-scrollbar{display:none}
+.mchip{flex:0 0 auto;background:transparent;border:1px solid var(--mdim);color:var(--mfg);font-family:inherit;font-size:.82em;padding:3px 9px;cursor:pointer;border-radius:0;white-space:nowrap;min-height:30px}
+.mchip:active{background:var(--mfg);color:#000}
+.mchip.hot{border-color:#ffd75f;color:#ffd75f}
+#mhint{flex:0 0 auto;padding:0 8px;display:-webkit-flex;display:flex;gap:4px;flex-wrap:wrap}
+#mhint:empty{display:none}
+#mhint .mchip{border-style:dashed;color:#5fd7ff;min-height:28px}
+#mform{flex:0 0 auto;display:-webkit-flex;display:flex;-webkit-align-items:center;align-items:center;gap:6px;padding:5px 8px calc(6px + env(safe-area-inset-bottom,0px));background:var(--mbg2);border-top:1px solid var(--mbd);margin:0}
+#mform .prm{color:#ffd75f;font-weight:bold}
+#mcmd{flex:1 1 auto;min-width:0;height:40px;background:transparent;border:0;border-bottom:1px solid var(--mdim);color:#fff;font-family:inherit;font-size:16px;outline:0;border-radius:0;caret-color:var(--mfg);padding:0 2px;-webkit-appearance:none;appearance:none}
+#mcmd:focus{border-bottom-color:var(--mfg)}
+#msend{flex:0 0 auto;height:40px;min-width:44px;background:transparent;border:1px solid var(--mfg);color:var(--mfg);font-family:inherit;font-size:1em;cursor:pointer;border-radius:0}
+#mside{display:none;flex:0 0 280px;width:280px;overflow-y:auto;border-left:1px solid var(--mbd);padding:8px 10px;font-size:.82em;line-height:1.45;background:var(--mbg2)}
+body.mside-on #mside{display:block}
+@media (max-width:899px){body.mside-on #mside{position:absolute;right:0;top:34px;bottom:0;width:min(86vw,300px);flex:none;z-index:6;border:1px solid var(--mfg);background:var(--mbg2)}}
+#mside h5{margin:6px 0 2px;color:#ffaf5f;font-size:1em;font-weight:normal}
+#mside .sr{display:-webkit-flex;display:flex;gap:4px;white-space:pre}
+#mside .bar{color:var(--mfg)}
+/* 彈窗／面板套用終端風 */
+body.mud .ov{background:rgba(0,0,0,.86)}
+body.mud .box{background:var(--mbg);border:1px solid var(--mfg);box-shadow:none;font-family:var(--mfont);color:var(--mfg)}
+body.mud .bhead{background:var(--mbg2);border-bottom:1px solid var(--mbd)}
+body.mud .tab{background:transparent;color:var(--mdim);box-shadow:none;border:1px solid var(--mbd);font-family:var(--mfont)}
+body.mud .tab.on{background:var(--mfg);color:#000;box-shadow:none}
+body.mud .bbody{color:var(--mfg)}
+body.mud .sec{background:var(--mbg2);border:1px solid var(--mbd);box-shadow:none}
+body.mud .sec h4{color:#ffd75f;border-bottom:1px solid var(--mbd)}
+body.mud .row>label{color:var(--mfg)}
+body.mud .gobtn,body.mud .opt,body.mud .smallb,body.mud .ib{background:transparent;color:var(--mfg);border:1px solid var(--mfg);box-shadow:none;font-family:var(--mfont)}
+body.mud .gobtn.dark{border-color:var(--mdim);color:var(--mdim)}
+body.mud .opt.on,body.mud .gobtn:hover{background:var(--mfg);color:#000}
+body.mud .field,body.mud select.field,body.mud textarea.field{background:#000;color:var(--mfg);border:1px solid var(--mdim);font-family:var(--mfont)}
+body.mud .hint{color:var(--mdim)}
+body.mud .fwarn{color:#ff9a8a}
+body.mud .pill,body.mud .slot,body.mud .rrow,body.mud .rd,body.mud .ach,body.mud .shopitem{background:var(--mbg2);border-color:var(--mbd);color:var(--mfg)}
+body.mud .title-screen h1{color:#ffd75f;text-shadow:none}
+body.mud #toast{background:#000;border:1px solid var(--mfg);color:var(--mfg);font-family:var(--mfont);bottom:calc(120px + env(safe-area-inset-bottom,0px))}
+body.mud .cbtn{background:transparent;border:1px solid var(--mdim);color:var(--mfg);box-shadow:none}
 </style>
 </head>
 <body>
@@ -392,6 +495,19 @@ body.noanim #dip{display:none}
    <div id="freebox"><input id="free" type="text" maxlength="120" placeholder="自由輸入你想做的事…" autocomplete="off" autocorrect="off" autocapitalize="off"><button class="gobtn" id="freego">行動</button><button class="gobtn alt" id="homebtn" title="行動選單">🏮</button></div>
   </div>
   <div id="side"></div>
+ </div>
+</div>
+<div id="mud" aria-label="MUD 文字介面">
+ <div id="mtop"><div id="mt1"></div><div id="mt2"></div><button type="button" id="mpanelbtn" title="側欄（狀態／地圖）">☰</button><button type="button" id="mmenubtn" title="選單／設定">⚙</button></div>
+ <div id="mmain">
+  <div id="mcol">
+   <div id="mlog" role="log" aria-live="polite"></div>
+   <div id="mext"></div>
+   <div id="mchips"></div>
+   <div id="mhint"></div>
+   <form id="mform" autocomplete="off"><span class="prm">&gt;</span><input id="mcmd" type="text" enterkeyhint="send" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="輸入指令或想做的事…（help 查看指令）" maxlength="160"><button type="submit" id="msend">↵</button></form>
+  </div>
+  <div id="mside"></div>
  </div>
 </div>
 <div class="ov" id="ovm"><div class="box"><div class="bhead" id="mhead"></div><div class="bbody" id="mbody"></div></div></div>
@@ -4605,6 +4721,11 @@ PANELS.help=function(){
  +'• <b>成人模式（18+）</b>預設關閉，需確認年滿 18 歲；僅含蓄暗示與淡出，不描寫露骨細節。關閉時相近情境會改為非性的威逼構陷。<br>'
  +'• <b>存檔</b>：5 個存檔槽＋自動存檔，並可匯出／匯入 JSON。<br>'
  +'• <b>AI</b>：到「設定」選擇服務預設（xAI Grok、OpenAI、DeepSeek…任何 OpenAI 相容 API）並輸入 Key，按「測試連線」；沒有 Key 可用「Grok App 手動模式」；AI 會潤色事件、生成對話與選項，並受「正史備忘錄」約束，不會讓死者復活。出錯時會顯示中文原因並自動降級為離線。</div></div>'
+ +'<div class="sec"><h4>MUD 介面與江湖系統</h4><div class="hint" style="font-size:14px;color:#e8dcc0">'
+ +'• 預設為文字 MUD 介面：下方輸入指令（look/看、go/去、goto、talk/談、stat、i、map、people…，輸入 <b>help</b> 看全部），也可輸入編號選擇、點選連結或自由輸入行動。<b>Tab</b> 補全、↑↓ 翻歷史、again 重複。設定→「🖥 介面」可改配色／字體／打字機，或輸入 <b>ui gfx</b> 切回舊版圖形介面（存檔通用）。<br>'
+ +'• <b>江湖歷練</b>：explore 探索遇敵（文字戰鬥、技能冷卻、內力、姿態，auto 自動、flee 逃跑）；掉落凡→傳說五階裝備與材料，forge 淬煉，shop 買裝備；skill／prep 技能與準備，殘卷集齊學新技。<br>'
+ +'• <b>掛機</b>：idle 開始、collect 收取，每分鐘現實時間一份成果，離線最多 8 小時（以本機時間計）。<b>任務</b>：task／claim 日常與週常。<b>師門</b>：sect 拜入六大師門，累積貢獻晉級學專屬技能。<b>天下榜</b>：rank。<br>'
+ +'• 這些系統疊加在原有劇情之上，不會取代：爵位、懲罰、復仇、人物關係、正史與 AI 自由輸入全部照常。</div></div>'
  +'<div class="sec"><h4>小提示</h4><div class="hint">• 文字太快？設定→文字速度或關閉打字機。<br>• iPhone 建議「加入主畫面」以全螢幕遊玩。<br>• 若存檔異常，先用「匯出」備份。</div></div>';
 };
 
@@ -11291,6 +11412,1754 @@ PANELS.book=function(){
  return h;
 };
 PACT.booktab=function(el){UIs.bookTab=el.getAttribute('data-v');openPanel('book');};
+
+/* ---- 46_mudsys.js ---- */
+/* ===== 46: MUD 玩法層（疊在原有系統之上）：修為／技能／文字戰鬥／裝備／掛機／日常／師門／榜單 ===== */
+/* 所有資料存於 S.x.m（舊存檔缺欄位時自動補齊） */
+var MS={};
+MS.now=function(){return (window.__NOW!==undefined&&window.__NOW!==null)?window.__NOW:Date.now();};
+function M(){
+ var x=X();var m=x.m;if(!m){m=x.m={};}
+ if(m.lv===undefined){m.lv=1;m.exp=0;}
+ if(!m.sk){m.sk={};m.prof={};m.prep=[];}
+ if(!m.sk.slash){m.sk.slash=1;}
+ if(!m.prof)m.prof={};
+ if(!m.prep||!m.prep.length){m.prep=['slash'];}
+ if(!m.init){m.init=1;var f={guard:'thrust',soldier:'thrust',wander:'dart',eunuch:'dart',adviser:'rhetoric',physician:'breath',maid:'dodge',consort:'dodge',attendant:'dodge'}[S.p.path];
+  if(f){m.sk[f]=1;m.prep.push(f);}}
+ if(!m.stance)m.stance='atk';
+ if(!m.gear)m.gear=[];if(!m.eq)m.eq={};if(!m.mat)m.mat={};if(!m.pages)m.pages={};
+ if(m.gid===undefined)m.gid=1;
+ if(!m.cnt)m.cnt={};
+ if(m.sect===undefined){m.sect='';m.sc=0;}
+ if(!m.stat)m.stat={wins:0,loss:0,expl:0,drops:0,idle:0};
+ return m;
+}
+function mNote(t){try{if(window.Mud&&Mud.note)Mud.note(t);}catch(e){}}
+/* ---------- 修為／等級 ---------- */
+MS.need=function(lv){return 50+25*lv+6*lv*lv;};
+MS.addExp=function(n){
+ var m=M(),lines=[];n=Math.max(0,Math.round(n));m.exp+=n;
+ while(m.lv<60&&m.exp>=MS.need(m.lv)){
+  m.exp-=MS.need(m.lv);m.lv++;
+  var k=(PATHS[S.p.path]&&PATHS[S.p.path].stat)||'wu';
+  var fx={st:{hp:8}};fx.st[k]=1;if(m.lv%3===0){var k2=['wu','zhi','zheng','mei','tong','stealth'][m.lv%6];fx.st[k2]=(fx.st[k2]||0)+1;}
+  applyFx(fx);if(m.lv%2===0){X().bonusSp=(X().bonusSp||0)+1;}
+  lines.push('✦ 修為提升！你升到了 Lv.'+m.lv+'（'+ST_NAMES[k]+'+1'+(m.lv%2===0?'，技能點+1':'')+'）');
+ }
+ if(m.lv>=60)m.exp=0;
+ return lines;
+};
+/* ---------- 裝備 ---------- */
+var GSLOT={w:'兵器',r:'衣甲',h:'頭冠',f:'履',a:'飾物'};
+var GORDER=['w','r','h','f','a'];
+var RAR=[{n:'凡',c:'#d0d0d0',m:1},{n:'良',c:'#6fcf6a',m:1.25},{n:'精',c:'#4aa8ff',m:1.55},{n:'珍',c:'#c070ff',m:1.95},{n:'傳說',c:'#ff9a2a',m:2.5}];
+var GBASE={w:['青銅劍','環首刀','秦戟','長矛','銅殳','強弩'],r:['麻衣','皮甲','札甲','鐵甲'],h:['布巾','皮弁','銅盔'],f:['麻履','皮靴','鐵靴'],a:['銅符','玉玦','香囊','護腕']};
+var GPRE=[['',''],['精煉','上好'],['名匠','百鍊'],['龍淵','破軍'],['始皇賜','傳世']];
+MS.genGear=function(slot,q,lvl){
+ var m=M();q=clamp(q,0,4);lvl=Math.max(1,lvl);
+ var p=Math.round((3+lvl*1.3)*RAR[q].m);
+ var base=pick(GBASE[slot]);var pre=GPRE[q][rnd(2)];
+ var g={id:m.gid++,n:(pre?pre+'·':'')+base,s:slot,q:q,lv:lvl,atk:0,def:0,hp:0,b:{},plus:0};
+ if(slot==='w'){g.atk=p;g.b.wu=Math.floor(p/5)+q;}
+ else if(slot==='r'){g.def=Math.round(p*0.8);g.hp=Math.round(p*3);g.b.tong=Math.floor(q/2);}
+ else if(slot==='h'){g.def=Math.round(p*0.4);g.hp=Math.round(p*2);g.b.zhi=Math.floor(p/8)+(q>1?1:0);}
+ else if(slot==='f'){g.def=Math.round(p*0.3);g.b.stealth=Math.floor(p/6)+q;}
+ else{g.atk=Math.round(p*0.3);g.b[pick(['mei','zheng','tong'])]=Math.floor(p/8)+q;}
+ if(q>=2){var ks=['wu','zhi','zheng','mei','tong','stealth'];var k=pick(ks);g.b[k]=(g.b[k]||0)+1+q;}
+ for(var k2 in g.b){if(!g.b[k2])delete g.b[k2];}
+ return g;
+};
+MS.gcalc=function(g){var f=1+g.plus*0.12;return {atk:Math.round(g.atk*f),def:Math.round(g.def*f),hp:Math.round(g.hp*f),b:g.b,f:f};};
+MS.gname=function(g){return '『'+RAR[g.q].n+'』'+g.n+(g.plus?' +'+g.plus:'');};
+MS.gearById=function(id){var a=M().gear;for(var i=0;i<a.length;i++)if(a[i].id===id)return a[i];return null;};
+MS.eqList=function(){var m=M(),r=[];for(var i=0;i<GORDER.length;i++){var g=MS.gearById(m.eq[GORDER[i]]);if(g)r.push(g);}return r;};
+MS.gearSum=function(){var s={atk:0,def:0,hp:0,b:{}};var l=MS.eqList();for(var i=0;i<l.length;i++){var c=MS.gcalc(l[i]);s.atk+=c.atk;s.def+=c.def;s.hp+=c.hp;for(var k in l[i].b)s.b[k]=(s.b[k]||0)+Math.round(l[i].b[k]*c.f);}return s;};
+(function(){var _eb=eqBonus;eqBonus=function(k){var v=_eb(k);if(S&&S.x&&S.x.m){try{v+=(MS.gearSum().b[k]||0);}catch(e){}}return v;};})();
+MS.price=function(g){return Math.round(30*RAR[g.q].m*RAR[g.q].m*(1+g.lv*0.35)*(1+g.plus*0.4));};
+MS.sellPrice=function(g){return Math.max(3,Math.round(MS.price(g)*0.35));};
+MS.addGear=function(g){var m=M();if(m.gear.length>=40){var w=-1,wp=1e9;for(var i=0;i<m.gear.length;i++){var o=m.gear[i];var eqd=m.eq[o.s]===o.id;var p=o.q*100+o.lv;if(!eqd&&p<wp){wp=p;w=i;}}if(w>=0){var rm=m.gear.splice(w,1)[0];S.p.st.gold+=MS.sellPrice(rm);}}
+ m.gear.push(g);m.stat.drops++;
+ if(!m.eq[g.s])m.eq[g.s]=g.id;return g;};
+MS.better=function(g){var m=M();var c=MS.gearById(m.eq[g.s]);if(!c)return true;var a=MS.gcalc(g),b=MS.gcalc(c);return (a.atk+a.def+a.hp/3)>(b.atk+b.def+b.hp/3);};
+/* ---------- 技能 ---------- */
+var MSK={
+ slash:{n:'劈砍',cd:0,mp:0,mul:1.0,t:'a',d:'基本攻擊'},
+ thrust:{n:'連環刺',cd:3,mp:8,mul:1.8,t:'a',d:'快劍突刺，傷害×1.8'},
+ sweep:{n:'橫掃千軍',cd:4,mp:10,mul:0.95,hits:2,t:'a',d:'戟掃兩次，各×0.95'},
+ crossbow:{n:'強弩連射',cd:4,mp:8,mul:2.1,t:'a',d:'秦弩連射，傷害×2.1'},
+ dart:{n:'飛蝗石',cd:3,mp:5,mul:1.4,ign:1,t:'a',d:'暗器，無視護甲'},
+ fire:{n:'方術·符火',cd:5,mp:14,mul:2.3,mag:1,t:'a',d:'以智力御火，傷害×2.3'},
+ breath:{n:'吐納術',cd:5,mp:0,heal:0.25,t:'h',d:'回復 25% 氣血'},
+ ironbody:{n:'鐵布衫',cd:6,mp:8,t:'b',buff:'def',turns:3,d:'3 回合受傷-40%'},
+ mohist:{n:'墨守',cd:6,mp:10,t:'b',buff:'def',turns:4,d:'4 回合受傷-50%'},
+ dodge:{n:'游身步',cd:5,mp:6,t:'b',buff:'dodge',turns:2,d:'閃避接下來 2 次攻擊'},
+ rhetoric:{n:'縱橫辯鋒',cd:5,mp:10,t:'b',buff:'weak',turns:3,d:'敵人 3 回合攻擊-35%'}
+};
+var MSK_ORDER=['slash','thrust','sweep','crossbow','dart','fire','breath','ironbody','mohist','dodge','rhetoric'];
+MS.skLv=function(id){return M().sk[id]||0;};
+MS.skMul=function(id){return 1+0.07*(MS.skLv(id)-1);};
+MS.skProf=function(id){var m=M();m.prof[id]=(m.prof[id]||0)+1;var lv=m.sk[id]||1;if(lv<10&&m.prof[id]>=lv*lv*4){m.prof[id]=0;m.sk[id]=lv+1;return '〔'+MSK[id].n+' 升到 Lv.'+(lv+1)+'〕';}return '';};
+MS.learn=function(id){var m=M();if(!MSK[id])return false;if(!m.sk[id]){m.sk[id]=1;m.prof[id]=0;}return true;};
+MS.addPage=function(id,n){var m=M();m.pages[id]=(m.pages[id]||0)+(n||1);if(m.pages[id]>=3&&!m.sk[id]){m.pages[id]-=3;MS.learn(id);return '📜 集齊三頁殘卷，習得「'+MSK[id].n+'」！';}return '📜 獲得「'+MSK[id].n+'」殘卷（'+(m.pages[id])+'/3）';};
+/* ---------- 戰鬥屬性 ---------- */
+MS.pstats=function(){
+ var m=M(),P=S.p.st,g=MS.gearSum(),lv=m.lv;
+ return {atk:8+pStat('wu')*0.45+pStat('tong')*0.12+lv*1.5+g.atk,mag:6+pStat('zhi')*0.55+lv*1.4+g.atk*0.3,
+  def:2+pStat('wu')*0.1+pStat('stealth')*0.06+lv*0.7+g.def,hp:Math.round(60+P.hp*0.5+pStat('wu')*0.5+lv*6+g.hp),
+  mp:Math.round(30+pStat('zhi')*0.5+lv*3),spd:10+pStat('stealth')*0.2+lv*0.3};
+};
+var FOES={
+ plain:[['山賊',1,1,1,'揮刀砍來'],['逃兵',0.9,1,0.9,'亂刀劈來'],['暴徒',1.1,0.9,0.8,'掄棍砸來'],['響馬',1,1.1,1,'策馬衝撞'],['刺客',0.8,1.3,0.7,'短刃疾刺']],
+ wild:[['野狼',0.9,1.1,0.6,'撲咬而來'],['山魈',1.2,1,1,'揮爪抓來'],['黑熊',1.6,1.2,1.1,'猛撲過來'],['毒蛇',0.5,1.4,0.5,'閃電般咬來'],['獵戶仇人',1,1,1,'放箭射來']],
+ north:[['匈奴游騎',1,1.2,1,'彎弓放箭'],['馬賊',1.1,1.1,1,'揮刀衝來'],['戍卒叛兵',1,1,1.1,'持矛刺來']],
+ war:[['趙軍潰卒',1,1,1,'持戈刺來'],['敵國斥候',0.9,1.2,0.9,'暗箭射來'],['敗兵',0.9,0.9,0.8,'舉刀亂砍']]
+};
+MS.region0={xianyang:1,yong:2,hangu:3,beidi:4,shangdang:5,bashu:4,handan:5,xinzheng:4,daliang:5,linzi:5,shouchun:6,ji:6};
+MS.foeLv=function(){
+ var b=MS.region0[S.p.region]||3;var sp=S.p.spot;
+ if(sp==='wild')b+=2;else if(sp==='battle')b+=3;else if(sp==='gate')b+=1;else if(sp==='palace'||sp==='chamber')b-=1;
+ b+=Math.floor(M().lv*0.4);
+ return Math.max(1,b+rnd(3)-1);
+};
+MS.makeFoe=function(opt){
+ opt=opt||{};var sp=S.p.spot,rg=S.p.region;
+ var pool=(sp==='wild')?FOES.wild:((rg==='beidi'||rg==='hangu')?FOES.north:((sp==='battle'||rg==='shangdang')?FOES.war:FOES.plain));
+ if(sp==='wild'&&roll(35))pool=FOES.plain;
+ var t=pick(pool);var L=opt.lv||MS.foeLv();var boss=!!opt.boss;
+ var dm={easy:0.7,normal:1,hard:1.2,hell:1.5}[SET.diff]||1;
+ var e={n:(boss?'悍匪頭目·':'')+t[0],lv:L,boss:boss,v:t[4],hp:0,mhp:0,atk:0,def:0,spd:9+L*0.4};
+ var k=boss?2.4:1;
+ e.mhp=Math.round((40+L*18)*t[1]*k*dm);e.hp=e.mhp;
+ e.atk=(7+L*2.1)*t[2]*(boss?1.35:1)*Math.pow(DS(),0.6)*(0.9+dm*0.1);
+ e.def=(1+L*0.75)*t[3]*(boss?1.2:1);
+ return e;
+};
+/* ---------- 戰鬥引擎 ---------- */
+MS.cbNew=function(e){
+ var ps=MS.pstats();var m=M();
+ return {e:e,ph:ps.hp,pmh:ps.hp,pm:ps.mp,pmm:ps.mp,rd:0,cd:{},bf:{},log:[],over:'',hp0:S.p.st.hp,ps:ps};
+};
+MS.stanceMul=function(){var s=M().stance;return s==='atk'?{o:1.25,i:1.15,crit:0,dodge:0}:(s==='def'?{o:0.8,i:0.65,crit:0,dodge:0}:{o:1,i:1,crit:0.12,dodge:0.12});};
+MS.cbPick=function(cb){
+ var m=M(),ids=m.prep;
+ if(cb.ph<cb.pmh*0.35){for(var i=0;i<ids.length;i++){var s=MSK[ids[i]];if(s.t==='h'&&!(cb.cd[ids[i]]>0)&&cb.pm>=s.mp)return ids[i];}}
+ for(var j=ids.length-1;j>=0;j--){var q=MSK[ids[j]];if(ids[j]==='slash')continue;if(q.t==='h'&&cb.ph>cb.pmh*0.7)continue;
+  if(q.t==='b'&&cb.bf[q.buff]>0)continue;
+  if(!(cb.cd[ids[j]]>0)&&cb.pm>=q.mp)return ids[j];}
+ return 'slash';
+};
+/* 一個回合：玩家出招（skill id），然後敵人行動。回傳行文字陣列 */
+MS.cbRound=function(cb,sid){
+ var m=M(),sk=MSK[sid]||MSK.slash,e=cb.e,ps=cb.ps,st=MS.stanceMul(),L=[],lvup='';
+ cb.rd++;
+ if(sk.t!=='a'||sid!=='slash'){}
+ if(cb.cd[sid]>0||cb.pm<sk.mp){sid='slash';sk=MSK.slash;}
+ cb.pm-=sk.mp;if(sk.cd)cb.cd[sid]=sk.cd+1;
+ var sl=MS.skMul(sid);
+ if(sk.t==='a'){
+  var hits=sk.hits||1;
+  for(var h=0;h<hits;h++){
+   var A=sk.mag?ps.mag:ps.atk;
+   var d=(A*sk.mul*sl-(sk.ign?0:e.def*0.6))*(0.88+rand()*0.24)*st.o;
+   var crit=roll(8+pStat('stealth')/6+st.crit*100);
+   if(crit)d*=1.6;
+   d=Math.max(1,Math.round(d));e.hp=Math.max(0,e.hp-d);
+   L.push('c|你'+(sid==='slash'?'一刀劈向':'使出【'+sk.n+'】攻向')+e.n+'，'+(crit?'正中要害！':'')+'造成 '+d+' 點傷害。'+(e.hp<=0?'':'（'+e.n+' '+e.hp+'/'+e.mhp+'）'));
+   if(e.hp<=0)break;
+  }
+ }else if(sk.t==='h'){
+  var hv=Math.round(cb.pmh*sk.heal*sl);cb.ph=Math.min(cb.pmh,cb.ph+hv);L.push('g|你運起【'+sk.n+'】，氣血回復 '+hv+' 點（'+cb.ph+'/'+cb.pmh+'）。');
+ }else{
+  cb.bf[sk.buff]=sk.turns;cb.bf.defm=(sid==='mohist')?sk.turns:(sk.buff==='def'?0:cb.bf.defm);L.push('g|你施展【'+sk.n+'】，'+sk.d+'。');
+ }
+ var pf=MS.skProf(sid);if(pf)L.push('g|'+pf);
+ if(e.hp<=0){cb.over='win';return L;}
+ /* 敵方 */
+ var dodgeP=clamp(5+(ps.spd-e.spd)*1.2+st.dodge*100,2,60);
+ if(cb.bf.dodge>0||roll(dodgeP)){L.push('d|'+e.n+e.v+'，被你閃了過去。');}
+ else{
+  var ea=e.atk*(cb.bf.weak>0?0.65:1);
+  var dd=(ea-ps.def*0.5)*(0.85+rand()*0.3)*st.i*(cb.bf.def>0?(cb.bf.defm>0?0.5:0.6):1);
+  dd=Math.max(1,Math.round(dd));cb.ph=Math.max(0,cb.ph-dd);
+  L.push('b|'+e.n+e.v+'，你受到 '+dd+' 點傷害。（氣血 '+cb.ph+'/'+cb.pmh+'）');
+ }
+ for(var k in cb.bf){if(cb.bf[k]>0)cb.bf[k]--;}
+ for(var c in cb.cd){if(cb.cd[c]>0)cb.cd[c]--;}
+ cb.pm=Math.min(cb.pmm,cb.pm+Math.round(cb.pmm*0.06)+(m.stance==='def'?3:1));
+ if(cb.ph<=0)cb.over='lose';
+ return L;
+};
+/* 戰利品 */
+MS.loot=function(e,lines){
+ var m=M(),rw={exp:0,gold:0,merit:0,rep:0,drops:[]};
+ var dl=clamp(1+(M().lv-e.lv)*0.08,0.4,1.5);
+ rw.exp=Math.round((10+e.lv*7)*(e.boss?3:1)*dl*DM());
+ rw.gold=Math.round((6+e.lv*5+rnd(10+e.lv*2))*(e.boss?3:1)*DM());
+ if(e.boss){rw.rep=1;if(S.p.path==='soldier'||S.p.path==='guard')rw.merit=1;}
+ var gq=0;var r=rand()*100;var bonus=e.boss?22:0;
+ if(r<4+bonus)gq=2;else if(r<16+bonus)gq=1;else gq=-1;
+ if(r<1.2+(e.boss?5:0))gq=3;
+ if(gq>=0&&roll(e.boss?90:(gq>=2?100:55))){var sl=pick(GORDER);var g=MS.genGear(sl,gq,Math.max(1,e.lv));MS.addGear(g);rw.drops.push('⚔ 掉落裝備：'+MS.gname(g));rw.gear=g;}
+ if(roll(e.boss?70:28)){var mt=pick([['ore','鐵礦'],['hide','獸皮'],['jade','玉髓']]);var n=1+rnd(e.boss?3:2);m.mat[mt[0]]=(m.mat[mt[0]]||0)+n;rw.drops.push('📦 '+mt[1]+'×'+n);}
+ if(roll(e.boss?45:7)){var cands=['thrust','sweep','crossbow','dart','fire','breath','ironbody','dodge','rhetoric','mohist'];var cid=pick(cands);rw.drops.push(MS.addPage(cid,1));}
+ if(roll(e.boss?60:12)){S.p.items.herb=(S.p.items.herb||0)+1;rw.drops.push('🌿 草藥×1');}
+ return rw;
+};
+MS.applyReward=function(rw){
+ var m=M();var out=[];
+ var fx={st:{gold:rw.gold}};if(rw.rep)fx.st.rep=rw.rep;if(rw.merit)fx.st.merit=rw.merit;
+ out=applyFx(fx);
+ var up=MS.addExp(rw.exp);
+ if(m.sect){m.sc=(m.sc||0)+(rw.merit?2:1);}
+ return {out:out,up:up};
+};
+MS.lossFx=function(cb){
+ var frac=1-cb.ph/cb.pmh;var loss=Math.round(frac*36);
+ return loss;
+};
+/* 自動解決一場戰鬥（掛機／連續探索使用）。回傳 {win,rounds,loss,e,rw} */
+MS.sim=function(e,maxr){
+ var cb=MS.cbNew(e);var r=0;maxr=maxr||40;
+ while(!cb.over&&r++<maxr){MS.cbRound(cb,MS.cbPick(cb));}
+ if(!cb.over)cb.over=(cb.ph/cb.pmh>e.hp/e.mhp)?'win':'lose';
+ return cb;
+};
+/* ---------- 日常／週常 ---------- */
+var DQT=[['win','擊退賊寇',3,5],['expl','探索歷練',6,12],['duty','當差',2,4],['talk','拜訪人物',2,4],['train','修練',1,3],['work','營生賺錢',1,3],['idle','掛機歷練收取',1,2],['move','走訪各處',3,6],['rest','休息養傷',1,2]];
+var WQT=[['win','擊退賊寇',20,0],['expl','探索歷練',40,0],['duty','當差',10,0],['idle','掛機收取',6,0],['talk','拜訪人物',10,0],['move','走訪各處',20,0]];
+MS.dkey=function(){var d=new Date(MS.now());return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();};
+MS.wkey=function(){var d=new Date(MS.now());var t=new Date(d.getFullYear(),d.getMonth(),d.getDate());var dd=(t.getDay()+6)%7;t.setDate(t.getDate()-dd);return t.getFullYear()+'w'+(t.getMonth()+1)+'-'+t.getDate();};
+MS.hashS=function(s){var h=7;for(var i=0;i<s.length;i++)h=(h*31+s.charCodeAt(i))|0;return Math.abs(h);};
+MS.tasks=function(){
+ var m=M();var dk=MS.dkey(),wk=MS.wkey();
+ if(!m.dq||m.dq.k!==dk){
+  var h=MS.hashS(dk+S.p.name),list=[],used={};
+  while(list.length<5){var t=DQT[h%DQT.length];h=(h*7+13)|0;h=Math.abs(h);if(used[t[0]])continue;used[t[0]]=1;list.push({k:t[0],n:t[1],need:t[2],have:0,got:0});}
+  m.dq={k:dk,list:list,bonus:0};
+ }
+ if(!m.wq||m.wq.k!==wk){
+  var h2=MS.hashS(wk+S.p.name),l2=[],u2={};
+  while(l2.length<3){var w=WQT[h2%WQT.length];h2=Math.abs((h2*5+11)|0);if(u2[w[0]])continue;u2[w[0]]=1;l2.push({k:w[0],n:w[1],need:w[2],have:0,got:0});}
+  m.wq={k:wk,list:l2,bonus:0};
+ }
+ return m;
+};
+MS.bump=function(k,n){
+ if(!S||!S.p)return;var m=MS.tasks();n=n||1;
+ var ls=m.dq.list.concat(m.wq.list);
+ for(var i=0;i<ls.length;i++){var t=ls[i];if(t.k===k&&t.have<t.need){t.have=Math.min(t.need,t.have+n);if(t.have>=t.need&&!t.notified){t.notified=1;mNote('📬 任務完成：'+t.n+'（可用 claim 領取）');}}}
+};
+MS.claimable=function(){var m=MS.tasks(),n=0,a=m.dq.list.concat(m.wq.list);for(var i=0;i<a.length;i++)if(a[i].have>=a[i].need&&!a[i].got)n++;
+ if(MS.allDone(m.dq)&&!m.dq.bonus)n++;return n;};
+MS.allDone=function(q){for(var i=0;i<q.list.length;i++)if(q.list[i].have<q.list[i].need)return false;return true;};
+MS.claim=function(){
+ var m=MS.tasks(),lines=[],lv=m.lv,gold=0,exp=0,tok=0,sc=0,i,t;
+ for(i=0;i<m.dq.list.length;i++){t=m.dq.list[i];if(t.have>=t.need&&!t.got){t.got=1;gold+=Math.round((30+lv*8)*DM());exp+=Math.round((26+lv*9)*DM());sc+=4;lines.push('日常「'+t.n+'」');}}
+ for(i=0;i<m.wq.list.length;i++){t=m.wq.list[i];if(t.have>=t.need&&!t.got){t.got=1;gold+=Math.round((150+lv*30)*DM());exp+=Math.round((120+lv*25)*DM());tok+=2;sc+=15;
+  var g=MS.genGear(pick(GORDER),2+(roll(25)?1:0),Math.max(1,lv+2));MS.addGear(g);lines.push('週常「'+t.n+'」→ 裝備 '+MS.gname(g));}}
+ if(MS.allDone(m.dq)&&!m.dq.bonus){m.dq.bonus=1;gold+=Math.round(80*DM()+lv*10);tok+=1;lines.push('今日日常全部完成');var g2=MS.genGear(pick(GORDER),1+(roll(30)?1:0),Math.max(1,lv+1));MS.addGear(g2);lines.push('全勤獎勵裝備 '+MS.gname(g2));}
+ if(!lines.length)return null;
+ var fx={st:{gold:gold}};var out=applyFx(fx);
+ m.mat.token=(m.mat.token||0)+tok;
+ if(m.sect)m.sc+=sc;
+ var up=MS.addExp(exp);
+ return {lines:lines,gold:gold,exp:exp,tok:tok,sc:sc,up:up};
+};
+/* ---------- 師門 ---------- */
+var SECTS={
+ jun:{n:'軍旅·王翦帳下',m:'wangjian',st:'wu',d:'軍中老卒傳授沙場殺法。',sk:[['thrust',0,120],['ironbody',1,200],['sweep',2,320],['crossbow',3,500]]},
+ fa:{n:'法家·李斯門下',m:'lisi',st:'zheng',d:'循名責實，以辯鋒與律令立身。',sk:[['rhetoric',0,120],['dart',1,200],['breath',2,260]]},
+ mo:{n:'墨家·禽離所領',m:'moqi',st:'zhi',d:'兼愛非攻，善守善械。',sk:[['crossbow',0,150],['mohist',1,220],['ironbody',2,320]]},
+ fang:{n:'方術·徐福座下',m:'xufu',st:'zhi',d:'尋仙問藥，通曉符火與吐納。',sk:[['breath',0,100],['dodge',1,180],['fire',2,320]]},
+ yi:{n:'醫家·夏無且',m:'xiawuju',st:'zhi',d:'懸壺濟世，亦知人體要害。',sk:[['breath',0,80],['dart',1,160],['dodge',2,240]]},
+ xia:{n:'遊俠·荊軻舊部',m:'jingke',st:'stealth',d:'一諾千金，來去如風。',sk:[['dart',0,100],['dodge',1,160],['thrust',2,260]]}
+};
+var SECT_ORDER=['jun','fa','mo','fang','yi','xia'];
+var SRANK=['弟子','入室弟子','親傳','長老','宗師'];
+var SRANK_AT=[0,40,120,300,700];
+MS.sRank=function(){var c=M().sc||0,r=0;for(var i=0;i<SRANK_AT.length;i++)if(c>=SRANK_AT[i])r=i;return r;};
+MS.sectCheck=function(){ /* 晉升加成 */
+ var m=M();if(!m.sect)return '';var r=MS.sRank();if((m.sr||0)<r){var k=SECTS[m.sect].st;m.sr=r;var fx={st:{}};fx.st[k]=2;applyFx(fx);return '🏯 你在「'+SECTS[m.sect].n+'」晉升為【'+SRANK[r]+'】（'+ST_NAMES[k]+'+2）';}return '';
+};
+/* ---------- 掛機 ---------- */
+var IDLE_KINDS={expl:'歷練（打怪）',work:'打工（賺錢）',train:'修練（練功）',duty:'當差（功勳）'};
+MS.IDLE_CAP=480;
+MS.idleTicks=function(){var m=M();if(!m.idle)return 0;return clamp(Math.floor((MS.now()-m.idle.t0)/60000),0,MS.IDLE_CAP);};
+MS.idleStart=function(k,stat){
+ var m=M();if(!IDLE_KINDS[k])return '未知的掛機類型。';
+ if(S.p.st.hp<25)return '你傷勢太重（健康 '+S.p.st.hp+'），先休息再掛機吧。';
+ if(m.idle){return '你已在掛機（'+IDLE_KINDS[m.idle.k]+'）。先用 collect 收取，或 idle stop 結束。';}
+ m.idle={k:k,t0:MS.now(),st:stat||'',spot:S.p.spot,rg:S.p.region};
+ return '';
+};
+MS.idleCollect=function(force){
+ var m=M();if(!m.idle)return {err:'你沒有在掛機。輸入 idle 開始。'};
+ var tk=MS.idleTicks();var id=m.idle;
+ if(tk<1&&!force)return {err:'掛機還不到一分鐘，再等等（每分鐘一個時辰段；離線最多累計 8 小時）。'};
+ tk=Math.max(1,tk);m.idle=null;
+ var res={k:id.k,ticks:tk,lines:[],days:0,hp:0};
+ var gold=0,exp=0,rep=0,merit=0,hpl=0,wins=0,loss=0,drops=[];
+ var lvBefore=m.lv;
+ var sv={rg:S.p.region,sp:S.p.spot};
+ S.p.region=id.rg;S.p.spot=id.spot;  /* 以掛機地點計算怪物 */
+ if(id.k==='expl'){
+  var n=Math.min(100,Math.max(1,Math.floor(tk/4)));
+  for(var i=0;i<n;i++){
+   if(S.p.st.hp-hpl<18){res.lines.push('你傷勢漸重，提早收兵。');break;}
+   var e=MS.makeFoe({boss:roll(4)});var cb=MS.sim(e);
+   if(cb.over==='win'){wins++;var rw=MS.loot(e);gold+=rw.gold;exp+=rw.exp;rep+=rw.rep;merit+=rw.merit;for(var d=0;d<rw.drops.length;d++)drops.push(rw.drops[d]);hpl+=Math.round(MS.lossFx(cb)*0.5);}
+   else{loss++;hpl+=Math.round(MS.lossFx(cb)*0.5);gold-=Math.min(5,S.p.st.gold);}
+  }
+  m.stat.wins+=wins;m.stat.loss+=loss;m.stat.expl+=wins+loss;
+  res.lines.push('你在「'+regionName(id.rg)+'·'+THEMES[id.spot]+'」歷練了 '+tk+' 分鐘，交手 '+(wins+loss)+' 場，勝 '+wins+' 敗 '+loss+'。');
+  MS.bump('win',wins);MS.bump('expl',wins+loss);
+ }else if(id.k==='work'){
+  gold=Math.round(tk*(1.4+m.lv*0.2)*DM());rep=Math.floor(tk/80);exp=Math.round(tk*0.4);
+  res.lines.push('你在「'+THEMES[id.spot]+'」替人跑腿做工 '+tk+' 分鐘，賺了不少銅錢。');MS.bump('work',1);
+ }else if(id.k==='train'){
+  var sk=id.st||'wu';var gain=Math.floor(tk/40);exp=Math.round(tk*0.7);
+  if(gain>0){var fx0={st:{}};fx0.st[sk]=Math.min(8,gain);applyFx(fx0);res.lines.push('你閉門苦練 '+tk+' 分鐘，'+ST_NAMES[sk]+' 提升 '+Math.min(8,gain)+'。');}
+  else res.lines.push('你閉門練功 '+tk+' 分鐘，略有心得，但還不足以突破。');
+  for(var j=0;j<m.prep.length;j++){var sid=m.prep[j];for(var q=0;q<Math.floor(tk/10);q++){var t=MS.skProf(sid);if(t)res.lines.push(t);}}
+  MS.bump('train',1);
+ }else{
+  merit=Math.min(40,Math.floor(tk/12)+1);gold=Math.round(tk*0.8);exp=Math.round(tk*0.35);
+  res.lines.push('你在「'+THEMES[id.spot]+'」當差 '+tk+' 分鐘，勤勤懇懇。');MS.bump('duty',2);
+ }
+ S.p.region=sv.rg;S.p.spot=sv.sp;
+ hpl=Math.min(hpl,Math.max(0,S.p.st.hp-15));
+ var fx={st:{gold:gold}};if(hpl>0)fx.st.hp=-hpl;if(rep)fx.st.rep=rep;if(merit)fx.st.merit=merit;
+ fx.days=Math.min(60,Math.ceil(tk/8));
+ /* 先套用數值，時間最後推進 */
+ var days=fx.days;delete fx.days;
+ var out=applyFx(fx);
+ var up=MS.addExp(exp);
+ if(m.sect)m.sc+=Math.ceil(tk/30);
+ m.stat.idle++;MS.bump('idle',1);
+ res.out=out;res.up=up;res.drops=drops;res.gold=gold;res.exp=exp;res.hpl=hpl;res.days=days;
+ var sr=MS.sectCheck();if(sr)res.up.push(sr);
+ applyFx({days:days});
+ return res;
+};
+/* ---------- 探索 ---------- */
+MS.exploreStep=function(auto){
+ var m=M();timePass(1);m.stat.expl++;MS.bump('expl',1);MS.bump('move',0);
+ var r=rnd(100),o={t:'',cb:null,lines:[]};
+ var spotName=THEMES[S.p.spot];
+ if(r<40){o.cb=MS.makeFoe({boss:roll(5)});o.t='前方'+pick(['草叢','巷口','岔路','林間','牆角'])+'竄出一人——'+o.cb.n+'！';return o;}
+ if(r<56){var g=Math.round((6+rnd(20)+m.lv*3)*DM());applyFx({st:{gold:g}});o.t='你在'+spotName+'一隅拾得一小袋錢幣，約 '+g+' 金。';return o;}
+ if(r<68){var mt=pick([['ore','鐵礦'],['hide','獸皮'],['jade','玉髓']]);m.mat[mt[0]]=(m.mat[mt[0]]||0)+1;o.t='你留意到地上有塊'+mt[1]+'，順手收下。';return o;}
+ if(r<76){var gq=roll(15)?2:(roll(45)?1:0);var gg=MS.genGear(pick(GORDER),gq,Math.max(1,MS.foeLv()));MS.addGear(gg);o.t='你翻出一件舊物：'+MS.gname(gg)+'。';o.gear=gg;return o;}
+ if(r<84){var hn=hereNpcs().filter(function(id){return !NPC[id].child;});if(hn.length){var id=pick(hn);o.t='你在'+spotName+'一帶打聽到：'+nm(id)+'最近的動向——'+(NPC[id].q||'').slice(0,26)+'。';var rr=R(id);rr.af=clamp(rr.af+1,0,100);}else o.t='你四處打聽，沒有什麼收穫。';return o;}
+ if(r<91){var dm=3+rnd(4);var f2={st:{hp:-dm}};applyFx(f2);o.t=pick(['你不慎踩進泥坑，扭了腳。','一塊鬆動的磚瓦砸在肩上。','你被荊棘劃傷了手臂。'])+'（健康-'+dm+'）';return o;}
+ o.t=pick(['你信步閒逛，只見'+(ambient()).slice(0,30)+'……','你東張西望，一無所獲，倒是看了一場熱鬧。','日頭西斜，你空手而回，但對地形更熟悉了。']);
+ return o;
+};
+/* ---------- 榜單 ---------- */
+MS.power=function(){var ps=MS.pstats();return Math.round(ps.atk*3+ps.def*4+ps.hp/4+M().lv*15);};
+MS.npcPower=function(n){return Math.round((10+n.wu*0.45+n.tg*0.12+n.tier*4)*3+(2+n.wu*0.1)*4+(60+n.wu*0.5)/4+n.tier*20+10);};
+MS.board=function(kind){
+ var rows=[];
+ for(var i=0;i<NPCS.length;i++){var n=NPCS[i];if(!alive(n.id)||n.child)continue;
+  var v=0;if(kind==='pow')v=MS.npcPower(n);else if(kind==='fame')v=n.fame;else if(kind==='wise')v=Math.round(n.zh*1.0+n.zg*0.4);else v=Math.round(n.tier*20+n.fame/2);
+  rows.push({n:n.n,v:v,me:0});}
+ var me=0;if(kind==='pow')me=MS.power();else if(kind==='fame')me=S.p.st.rep;else if(kind==='wise')me=Math.round(pStat('zhi')+pStat('zheng')*0.4);else me=Math.round(S.p.rank*20+S.p.st.merit/2+jueLv()*3);
+ rows.push({n:S.p.name+'（你）',v:me,me:1});
+ rows.sort(function(a,b){return b.v-a.v;});
+ return rows;
+};
+var BOARD_N={pow:'戰力榜',fame:'聲望榜',wise:'智謀榜',rank:'功名榜'};
+/* ---------- 商店（裝備） ---------- */
+MS.shopOK=function(){var s=S.p.spot;return s==='market'||s==='gate'||s==='inn'||s==='tea';};
+MS.stock=function(){
+ var m=M();var key=Math.floor(S.day/30)+'|'+S.p.region+'|'+S.p.spot;
+ if(m.stk&&m.stk.k===key)return m.stk.l;
+ var h=MS.hashS(key+S.seed);var l=[];var save=null;
+ for(var i=0;i<6;i++){
+  h=Math.abs((h*1103515245+12345)|0);var sl=GORDER[h%5];h=Math.abs((h*1103515245+12345)|0);
+  var q=(h%100<8)?2:((h%100<40)?1:0);
+  var g=MS.genGearSeeded(sl,q,Math.max(1,MS.foeLv()+1),h);l.push(g);
+ }
+ m.stk={k:key,l:l};return l;
+};
+MS.genGearSeeded=function(slot,q,lvl,h){
+ var m=M();var gid=m.gid;var g=MS.genGear(slot,q,lvl);m.gid=gid;g.id=0;return g;
+};
+/* =================== 節點（圖形／MUD 介面共用）=================== */
+function mBack(go){return ch('↩ 返回',go||'mMenu');}
+function mSummary(){
+ var m=M();var ps=MS.pstats();
+ return '【江湖歷練】Lv.'+m.lv+'（修為 '+m.exp+'/'+MS.need(m.lv)+'）　戰力 '+MS.power()+'　氣血 '+ps.hp+'　內力 '+ps.mp+'\n姿態：'+({atk:'攻',def:'守',agi:'巧'}[m.stance])+'　準備技能：'+m.prep.map(function(i){return MSK[i].n;}).join('、')+
+  (m.idle?'\n⏳ 掛機中：'+IDLE_KINDS[m.idle.k]+'（已累計 '+MS.idleTicks()+' 分鐘）':'')+(MS.claimable()?'\n📬 有 '+MS.claimable()+' 項任務獎勵可領取':'');
+}
+NODES.mMenu=function(){
+ var m=M();var c=[];
+ c.push(ch('🧭 探索此地（耗1時辰）','mExplore',{n:1},null,{g:'歷練'}));
+ c.push(ch('🧭 連續探索×5','mExplore',{n:5},null,{g:'歷練'}));
+ c.push(ch('⚔ 尋釁切磋／討伐賊寇','mFight',null,null,{g:'歷練'}));
+ c.push(ch(m.idle?'⏳ 掛機狀態／收取':'⏳ 開始掛機','mIdle',null,null,{g:'掛機'}));
+ c.push(ch('📋 任務榜（日常／週常）','mTask',null,null,{g:'成長'}));
+ c.push(ch('🌀 技能·準備武功','mSkill',null,null,{g:'成長'}));
+ c.push(ch('🎽 裝備·行囊','mGear',null,null,{g:'成長'}));
+ c.push(ch('🏯 師門','mSect',null,null,{g:'成長'}));
+ c.push(ch('🏆 天下榜','mRank',null,null,{g:'成長'}));
+ if(MS.shopOK())c.push(ch('🛒 兵器鋪','mShop',null,null,{g:'成長'}));
+ c.push(ch('↩ 返回','hub'));
+ return scene(mSummary(),'',{kind:'menu',bg:S.p.spot,ch:c});
+};
+QHUB.push({cond:function(){return true;},t:function(){return '🗡 江湖歷練·掛機·任務榜'+(MS.claimable()?' 📬':'');},go:'mMenu',g:'人生'});
+/* ---- 戰鬥場景 ---- */
+function cbText(cb,lead){
+ var e=cb.e;var h='';
+ h+='【'+(e.boss?'⚔ 強敵：':'⚔ ')+e.n+' Lv.'+e.lv+'】\n';
+ h+='敵：'+e.hp+'/'+e.mhp+'　我：氣血 '+cb.ph+'/'+cb.pmh+'　內力 '+cb.pm+'/'+cb.pmm+'　第 '+cb.rd+' 回合　姿態：'+({atk:'攻',def:'守',agi:'巧'}[M().stance])+'\n';
+ var lg=cb.log.slice(-8);
+ for(var i=0;i<lg.length;i++)h+=lg[i].replace(/^[a-z]\|/,'')+'\n';
+ return (lead?lead+'\n':'')+h;
+}
+function cbChoices(cb){
+ var m=M(),c=[];
+ for(var i=0;i<m.prep.length;i++){var id=m.prep[i],s=MSK[id],cd=cb.cd[id]||0;
+  var dis=(cd>0)?'（冷卻'+cd+'）':(cb.pm<s.mp?'（內力不足）':'');
+  c.push(ch(s.n+(s.mp?'（內力'+s.mp+'）':'')+dis,'mcb',{a:'skill',id:id},null,{g:'出招'}));}
+ c.push(ch('🤖 自動戰鬥（至分勝負）','mcb',{a:'auto'},null,{g:'指令'}));
+ c.push(ch('姿態：攻（傷害+25%，受傷+15%）','mcb',{a:'stance',v:'atk'},null,{g:'姿態'}));
+ c.push(ch('姿態：守（傷害-20%，受傷-35%）','mcb',{a:'stance',v:'def'},null,{g:'姿態'}));
+ c.push(ch('姿態：巧（暴擊與閃避+12%）','mcb',{a:'stance',v:'agi'},null,{g:'姿態'}));
+ if((S.p.items.medicine||0)>0)c.push(ch('🧪 服傷藥（回復三成氣血）','mcb',{a:'med'},null,{g:'指令'}));
+ c.push(ch('🏃 逃跑','mcb',{a:'flee'},null,{g:'指令'}));
+ return c;
+}
+MS.startCombat=function(e,ctx){
+ var m=M();m.cb=MS.cbNew(e);m.cb.ctx=ctx||'';
+ return NODES.mcb({a:'show',lead:'你與'+e.n+'對上了！'});
+};
+NODES.mFight=function(){
+ var boss=roll(8);var e=MS.makeFoe({boss:boss});
+ return MS.startCombat(e,'fight');
+};
+NODES.mcb=function(a){
+ var m=M();var cb=m.cb;
+ if(!cb){return NODES.hub({});}
+ if(a.a==='stance'){m.stance=a.v;return NODES.mcb({a:'show',lead:'你調整姿態為「'+({atk:'攻',def:'守',agi:'巧'}[a.v])+'」。'});}
+ if(a.a==='show')return scene(cbText(cb,a.lead),'',{kind:'fight',bg:S.p.spot,ch:cbChoices(cb),tag:'⚔ 戰鬥'});
+ if(a.a==='med'){
+  if(!useItem('medicine'))return NODES.mcb({a:'show',lead:'你沒有傷藥。'});
+  var hv=Math.round(cb.pmh*0.3);cb.ph=Math.min(cb.pmh,cb.ph+hv);cb.log.push('g|你灌下傷藥，氣血回復 '+hv+'。');
+  /* 敵人趁機出手 */
+  var dd=Math.max(1,Math.round(cb.e.atk*0.8-cb.ps.def*0.5));cb.ph=Math.max(0,cb.ph-dd);cb.log.push('b|'+cb.e.n+'趁隙攻來，你受到 '+dd+' 點傷害。');
+  if(cb.ph<=0)cb.over='lose';
+  return MS.cbFinish(cb);
+ }
+ if(a.a==='flee'){
+  var p=clamp(50+(cb.ps.spd-cb.e.spd)*3,15,90);
+  if(roll(p)){m.cb=null;var lp=Math.round(MS.lossFx(cb)*0.6);var out=lp?applyFx({st:{hp:-lp}}):[];MS.bump('move',0);
+   return resultScene('脫身','你虛晃一招，轉身遁走，總算甩開了'+cb.e.n+'。'+fxLine(out),'',S.p.spot,[ch('繼續','hub')]);}
+  cb.log.push('b|你想逃，卻被'+cb.e.n+'攔住，吃了一記重擊。');var d2=Math.max(1,Math.round(cb.e.atk*0.9-cb.ps.def*0.5));cb.ph=Math.max(0,cb.ph-d2);cb.log.push('b|受到 '+d2+' 點傷害。');
+  if(cb.ph<=0)cb.over='lose';
+  return MS.cbFinish(cb);
+ }
+ if(a.a==='skill'){var L=MS.cbRound(cb,a.id);cb.log=cb.log.concat(L);return MS.cbFinish(cb);}
+ if(a.a==='auto'){var g=0;while(!cb.over&&g++<40){var L2=MS.cbRound(cb,MS.cbPick(cb));cb.log=cb.log.concat(L2);}return MS.cbFinish(cb,true);}
+ return NODES.mcb({a:'show'});
+};
+MS.cbFinish=function(cb,auto){
+ var m=M();
+ if(!cb.over)return NODES.mcb({a:'show'});
+ m.cb=null;
+ var e=cb.e;var loss=MS.lossFx(cb);
+ var body='';var lg=cb.log.slice(auto?-14:-6);for(var i=0;i<lg.length;i++)body+=lg[i].replace(/^[a-z]\|/,'')+'\n';
+ if(cb.over==='win'){
+  var rw=MS.loot(e);var ap=MS.applyReward(rw);
+  var out2=loss>0?applyFx({st:{hp:-loss}}):[];m.stat.wins++;MS.bump('win',1);
+  if(M().sect)M().sc+=0;
+  var sr=MS.sectCheck();
+  var t='【勝】'+e.n+'倒在地上，不再動彈。\n'+body+'\n〔修為+'+rw.exp+'　金錢+'+rw.gold+(rw.rep?'　聲望+'+rw.rep:'')+(rw.merit?'　功勳+'+rw.merit:'')+'〕';
+  if(rw.drops.length)t+='\n'+rw.drops.join('\n');
+  if(ap.up.length)t+='\n'+ap.up.join('\n');if(sr)t+='\n'+sr;
+  if(out2.length)t+='\n〔'+out2.join('　')+'〕';
+  var nx=[ch('繼續','hub')];
+  if(cb.ctx==='fight'||cb.ctx==='expl')nx.unshift(ch('⚔ 再戰一場','mFight'),ch('🧭 繼續探索','mExplore',{n:1}));
+  if(rw.gear&&MS.better(rw.gear))nx.unshift(ch('🎽 換上 '+MS.gname(rw.gear),'mGearEq',{id:rw.gear.id,back:'hub'}));
+  return scene(t,'',{kind:'result',bg:S.p.spot,ch:nx});
+ }
+ m.stat.loss++;
+ var lost=Math.min(S.p.st.gold,Math.round(S.p.st.gold*0.1)+3);
+ var hl=Math.min(Math.max(0,S.p.st.hp-8),Math.max(8,loss));
+ var out3=applyFx({st:{hp:-hl,gold:-lost}});
+ return scene('【敗】你眼前一黑，倒在了地上……\n'+body+'\n過了許久才被路人救起，'+e.n+'早已不見蹤影。\n〔'+out3.join('　')+'〕\n（戰鬥失敗不會死亡，但會受傷、破財。可先「休息」再戰。）',
+  '',{kind:'result',bg:S.p.spot,ch:[ch('繼續','hub'),ch('🛌 休息養傷（10日）','rest')]});
+};
+NODES.mExplore=function(a){
+ var n=clamp(a.n||1,1,10);
+ if(S.p.st.hp<20)return resultScene('探索','你傷勢太重（健康 '+S.p.st.hp+'），不宜四處亂走。先休息吧。','',S.p.spot,[ch('🛌 休息養傷（10日）','rest'),ch('返回','mMenu')]);
+ var lines=[],g0=S.p.st.gold,wins=0;
+ for(var i=0;i<n;i++){
+  if(S.p.st.hp<20){lines.push('你傷勢漸重，停止探索。');break;}
+  var o=MS.exploreStep();
+  if(o.cb){
+   if(n===1){var sc0=MS.startCombat(o.cb,'expl');sc0.t=o.t+'\n\n'+sc0.t;return sc0;}
+   var cb=MS.sim(o.cb);lines.push(o.t);
+   if(cb.over==='win'){var rw=MS.loot(o.cb);var ap=MS.applyReward(rw);var ls=Math.round(MS.lossFx(cb)*0.7);if(ls)applyFx({st:{hp:-Math.min(ls,Math.max(0,S.p.st.hp-12))}});M().stat.wins++;wins++;MS.bump('win',1);
+    lines.push('　→ 戰勝，修為+'+rw.exp+' 金+'+rw.gold+(rw.drops.length?'　'+rw.drops.join('；'):'')+(ap.up.length?'\n　'+ap.up.join(' '):''));}
+   else{M().stat.loss++;var hl=Math.min(Math.max(0,S.p.st.hp-8),Math.max(6,MS.lossFx(cb)));applyFx({st:{hp:-hl,gold:-Math.min(S.p.st.gold,8)}});lines.push('　→ 不敵，負傷退走（健康-'+hl+'）。');break;}
+  }else lines.push(o.t);
+ }
+ return scene('【探索·'+THEMES[S.p.spot]+'】\n'+lines.join('\n')+'\n〔健康 '+S.p.st.hp+'　金錢 '+S.p.st.gold+(S.p.st.gold!==g0?'（'+(S.p.st.gold>=g0?'+':'')+(S.p.st.gold-g0)+'）':'')+'〕',
+  '',{kind:'result',bg:S.p.spot,ch:[ch('🧭 再探索','mExplore',{n:n}),ch('🗡 江湖歷練','mMenu'),ch('繼續','hub')]});
+};
+/* ---- 掛機 ---- */
+NODES.mIdle=function(){
+ var m=M();var c=[];var t='【掛機】\n每一分鐘現實時間累計一份成果，離線最多累計 8 小時，回來按「收取」。\n掛機會推進遊戲內時間，原本的劇情與時間線照常發生。\n';
+ if(m.idle){
+  var tk=MS.idleTicks();t+='\n目前：'+IDLE_KINDS[m.idle.k]+'　地點：'+regionName(m.idle.rg)+'·'+THEMES[m.idle.spot]+'\n已累計 '+tk+' 分鐘'+(tk>=MS.IDLE_CAP?'（已達上限）':'')+'。';
+  c.push(ch('📥 收取成果','mIdleCollect'));c.push(ch('✖ 放棄掛機（無收穫）','mIdleStop'));
+ }else{
+  c.push(ch('⚔ 歷練（打怪、掉裝備）','mIdleStart',{k:'expl'}));
+  c.push(ch('💰 打工（賺金錢）','mIdleStart',{k:'work'}));
+  c.push(ch('🥋 修練：武力','mIdleStart',{k:'train',st:'wu'}));c.push(ch('📚 修練：智力','mIdleStart',{k:'train',st:'zhi'}));
+  c.push(ch('🌙 修練：隱秘','mIdleStart',{k:'train',st:'stealth'}));c.push(ch('🎼 修練：魅力','mIdleStart',{k:'train',st:'mei'}));
+  c.push(ch('🏮 當差（功勳）','mIdleStart',{k:'duty'}));
+ }
+ c.push(mBack());
+ return scene(t,'',{kind:'menu',bg:S.p.spot,ch:c});
+};
+NODES.mIdleStart=function(a){
+ var er=MS.idleStart(a.k,a.st);
+ if(er)return resultScene('掛機',er,'',S.p.spot,[mBack('mIdle')]);
+ return resultScene('掛機','你開始'+IDLE_KINDS[a.k]+'式的掛機。關掉頁面也沒關係，之後輸入 collect（或按「收取」）領取成果。\n（原型限制：以瀏覽器本機時間計算，需用同一個瀏覽器開啟。）','',S.p.spot,[ch('📥 收取成果','mIdleCollect'),ch('繼續','hub')]);
+};
+NODES.mIdleStop=function(){M().idle=null;return resultScene('掛機','你結束了掛機。','',S.p.spot,[ch('繼續','hub')]);};
+NODES.mIdleCollect=function(){
+ var r=MS.idleCollect();
+ if(r.err)return resultScene('掛機',r.err,'',S.p.spot,[mBack('mIdle')]);
+ var t=r.lines.join('\n')+'\n';
+ t+='\n〔修為+'+r.exp+'　金錢'+(r.gold>=0?'+':'')+r.gold+(r.hpl?'　健康-'+r.hpl:'')+'　經過 '+r.days+' 日〕';
+ if(r.out&&r.out.length)t+='\n〔'+r.out.join('　')+'〕';
+ if(r.drops.length)t+='\n'+r.drops.slice(0,12).join('\n')+(r.drops.length>12?'\n……（共 '+r.drops.length+' 項）':'');
+ if(r.up.length)t+='\n'+r.up.join('\n');
+ return scene('【掛機收穫】\n'+t,'',{kind:'result',bg:S.p.spot,ch:[ch('繼續','hub'),ch('⏳ 再次掛機','mIdle')]});
+};
+/* ---- 任務榜 ---- */
+NODES.mTask=function(){
+ var m=MS.tasks();var t='【任務榜】　日期 '+m.dq.k+'\n';
+ var c=[];
+ function row(x){return (x.got?'✔':(x.have>=x.need?'◉':'○'))+' '+x.n+' '+x.have+'/'+x.need;}
+ t+='\n〔日常〕\n';for(var i=0;i<m.dq.list.length;i++)t+=row(m.dq.list[i])+'\n';
+ t+=(MS.allDone(m.dq)?(m.dq.bonus?'✔ 全勤獎勵已領':'◉ 全勤獎勵可領'):'（全部完成有額外獎勵）')+'\n';
+ t+='\n〔週常〕\n';for(i=0;i<m.wq.list.length;i++)t+=row(m.wq.list[i])+'\n';
+ t+='\n令牌：'+(m.mat.token||0)+'（可在 forge 淬煉時折抵材料）';
+ if(MS.claimable())c.push(ch('📬 領取全部獎勵','mTaskClaim'));
+ c.push(mBack());
+ return scene(t,'',{kind:'menu',bg:S.p.spot,ch:c});
+};
+NODES.mTaskClaim=function(){
+ var r=MS.claim();if(!r)return resultScene('任務榜','目前沒有可領取的獎勵。','',S.p.spot,[mBack('mTask')]);
+ var sr=MS.sectCheck();
+ return resultScene('任務榜','領取：'+r.lines.join('、')+'\n〔金錢+'+r.gold+'　修為+'+r.exp+(r.tok?'　令牌+'+r.tok:'')+(r.sc?'　師門貢獻+'+r.sc:'')+'〕'+(r.up.length?'\n'+r.up.join('\n'):'')+(sr?'\n'+sr:''),'',S.p.spot,[ch('返回任務榜','mTask'),ch('繼續','hub')]);
+};
+/* ---- 技能 ---- */
+MS.skText=function(){
+ var m=M(),t='';
+ for(var i=0;i<MSK_ORDER.length;i++){var id=MSK_ORDER[i];if(!m.sk[id]&&!(m.pages[id]>0))continue;var s=MSK[id];
+  t+=(m.prep.indexOf(id)>=0?'★':'　')+s.n+(m.sk[id]?' Lv.'+m.sk[id]+'（熟練 '+(m.prof[id]||0)+'/'+((m.sk[id])*(m.sk[id])*4)+'）':'　殘卷 '+m.pages[id]+'/3')+'　'+s.d+(s.cd?'｜冷卻'+s.cd:'')+(s.mp?'｜內力'+s.mp:'')+'\n';}
+ return t;
+};
+NODES.mSkill=function(){
+ var m=M();var c=[];
+ for(var i=0;i<MSK_ORDER.length;i++){var id=MSK_ORDER[i];if(!m.sk[id])continue;
+  var on=m.prep.indexOf(id)>=0;
+  if(id==='slash')continue;
+  c.push(ch((on?'☑ 卸下 ':'☐ 準備 ')+MSK[id].n,'mSkillPrep',{id:id}));}
+ c.push(mBack());
+ return scene('【技能·準備武功】（最多準備 4 招；自動戰鬥會從後往前依序挑可用的招式）\n'+MS.skText(),'',{kind:'menu',bg:S.p.spot,ch:c});
+};
+NODES.mSkillPrep=function(a){
+ var m=M();var i=m.prep.indexOf(a.id);
+ if(i>=0){m.prep.splice(i,1);if(!m.prep.length)m.prep=['slash'];}
+ else{if(!m.sk[a.id])return NODES.mSkill();if(m.prep.length>=4)m.prep.splice(1,1);m.prep.push(a.id);}
+ if(m.prep.indexOf('slash')<0)m.prep.unshift('slash');
+ return NODES.mSkill();
+};
+/* ---- 裝備 ---- */
+MS.gearLine=function(g,i,mark){var c=MS.gcalc(g);var bs=[];for(var k in g.b)bs.push(ST_NAMES[k]+'+'+Math.round(g.b[k]*c.f));
+ return (mark?'★':'　')+(i!==undefined?'['+i+'] ':'')+'『'+RAR[g.q].n+'』'+g.n+(g.plus?'+'+g.plus:'')+'〔'+GSLOT[g.s]+' Lv'+g.lv+'〕'+(c.atk?' 攻'+c.atk:'')+(c.def?' 防'+c.def:'')+(c.hp?' 血'+c.hp:'')+(bs.length?' '+bs.join(' '):'');};
+NODES.mGear=function(a){
+ var m=M();var t='【裝備·行囊】\n〔已裝備〕\n';
+ for(var i=0;i<GORDER.length;i++){var s=GORDER[i];var g=MS.gearById(m.eq[s]);t+=GSLOT[s]+'：'+(g?MS.gearLine(g).slice(1):'—')+'\n';}
+ var gs=MS.gearSum();t+='合計：攻+'+gs.atk+' 防+'+gs.def+' 血+'+gs.hp+'\n';
+ t+='材料：鐵礦 '+(m.mat.ore||0)+'　獸皮 '+(m.mat.hide||0)+'　玉髓 '+(m.mat.jade||0)+'　令牌 '+(m.mat.token||0)+'\n';
+ var c=[];var pg_=a&&a.pg||0;
+ var bag=m.gear.filter(function(g){return m.eq[g.s]!==g.id;});
+ t+='\n〔背包〕'+bag.length+' 件'+(bag.length?'':'（空）')+'\n';
+ var from=pg_*6,to=Math.min(bag.length,from+6);
+ for(i=from;i<to;i++){t+=MS.gearLine(bag[i],i+1)+'\n';c.push(ch('穿上 ['+(i+1)+'] '+MS.gname(bag[i]),'mGearEq',{id:bag[i].id}));}
+ if(bag.length>to)c.push(ch('下一頁 ▶','mGear',{pg:pg_+1}));
+ if(pg_>0)c.push(ch('◀ 上一頁','mGear',{pg:pg_-1}));
+ c.push(ch('🔨 淬煉裝備','mForge'));c.push(ch('💰 一鍵出售低階背包裝備（凡、良）','mGearSellAll'));c.push(mBack());
+ var inv=invList();if(inv.length){t+='\n〔物品〕'+inv.map(function(k){return ITEMS[k].n+'×'+S.p.items[k];}).join('　');}
+ return scene(t,'',{kind:'menu',bg:S.p.spot,ch:c});
+};
+NODES.mGearEq=function(a){
+ var m=M();var g=MS.gearById(a.id);if(!g)return NODES.mGear();
+ m.eq[g.s]=g.id;
+ return a.back==='hub'?resultScene('裝備','你換上了 '+MS.gname(g)+'。','',S.p.spot,[ch('繼續','hub')]):NODES.mGear();
+};
+NODES.mGearSellAll=function(){
+ var m=M();var n=0,gold=0;
+ for(var i=m.gear.length-1;i>=0;i--){var g=m.gear[i];if(m.eq[g.s]===g.id)continue;if(g.q<=1&&g.plus===0){gold+=MS.sellPrice(g);m.gear.splice(i,1);n++;}}
+ if(gold)applyFx({st:{gold:gold}});
+ return resultScene('出售','賣出 '+n+' 件，得 '+gold+' 金。','',S.p.spot,[ch('返回裝備','mGear')]);
+};
+NODES.mForge=function(a){
+ var m=M();var c=[];var t='【淬煉】消耗金錢與材料為裝備 +1（最高 +5；失敗不會損毀裝備，只損耗材料）。\n';
+ var l=MS.eqList();
+ for(var i=0;i<l.length;i++){var g=l[i];var cost=MS.forgeCost(g);
+  t+=MS.gearLine(g)+(g.plus>=5?'　（已滿）':'　需 金'+cost.gold+' 鐵礦'+cost.ore+'\n');
+  if(g.plus<5)c.push(ch('淬煉 '+MS.gname(g)+'（金'+cost.gold+' 礦'+cost.ore+'）','mForgeDo',{id:g.id}));}
+ if(!l.length)t+='（你沒有裝備任何東西）\n';
+ t+='\n材料：鐵礦 '+(m.mat.ore||0)+'　令牌 '+(m.mat.token||0)+'（1 令牌折 2 鐵礦）';
+ c.push(ch('↩ 返回','mGear'));
+ return scene(t,'',{kind:'menu',bg:S.p.spot,ch:c});
+};
+MS.forgeCost=function(g){return {gold:60*(g.plus+1)*(1+g.q*0.5)|0,ore:g.plus+1+(g.q>2?1:0)};};
+NODES.mForgeDo=function(a){
+ var m=M();var g=MS.gearById(a.id);if(!g||g.plus>=5)return NODES.mForge();
+ var c=MS.forgeCost(g);
+ var oreHave=(m.mat.ore||0)+(m.mat.token||0)*2;
+ if(S.p.st.gold<c.gold||oreHave<c.ore)return resultScene('淬煉','金錢或材料不足（需 金'+c.gold+'、鐵礦'+c.ore+'）。','',S.p.spot,[ch('返回','mForge')]);
+ S.p.st.gold-=c.gold;var need=c.ore;var u=Math.min(need,m.mat.ore||0);m.mat.ore-=u;need-=u;
+ while(need>0&&(m.mat.token||0)>0){m.mat.token--;need-=2;if(need<0){m.mat.ore=(m.mat.ore||0)+(-need);need=0;}}
+ var ok=roll(95-g.plus*13+skLv('iron')*3);
+ if(ok){g.plus++;return resultScene('淬煉','爐火映紅了你的臉，錘聲過後，『'+g.n+'』提升到 +'+g.plus+'！','',S.p.spot,[ch('繼續淬煉','mForge'),ch('返回','mGear')]);}
+ return resultScene('淬煉','火候不對，這一爐失敗了，材料化為灰燼。','',S.p.spot,[ch('再試一次','mForge'),ch('返回','mGear')]);
+};
+NODES.mShop=function(a){
+ if(!MS.shopOK())return resultScene('兵器鋪','這裡沒有兵器鋪。到市集、城門或客舍看看。','',S.p.spot,[mBack()]);
+ var l=MS.stock();var t='【兵器鋪】（每月進貨一次）　你的金錢：'+S.p.st.gold+'\n';var c=[];
+ for(var i=0;i<l.length;i++){t+=MS.gearLine(l[i],i+1)+'　'+MS.price(l[i])+'金\n';c.push(ch('購買 ['+(i+1)+'] '+MS.gname(l[i])+'（'+MS.price(l[i])+'金）','mBuy',{i:i}));}
+ c.push(mBack());
+ return scene(t,'',{kind:'menu',bg:S.p.spot,ch:c});
+};
+NODES.mBuy=function(a){
+ var m=M();var l=MS.stock();var g=l[a.i];if(!g)return NODES.mShop();
+ var p=MS.price(g);if(S.p.st.gold<p)return resultScene('兵器鋪','錢不夠（需 '+p+' 金）。','',S.p.spot,[ch('返回','mShop')]);
+ S.p.st.gold-=p;var g2=JSON.parse(JSON.stringify(g));g2.id=m.gid++;MS.addGear(g2);l.splice(a.i,1);
+ return resultScene('兵器鋪','你買下了 '+MS.gname(g2)+'。','',S.p.spot,[ch('再看看','mShop'),ch('🎽 換上','mGearEq',{id:g2.id}),ch('繼續','hub')]);
+};
+/* ---- 師門 ---- */
+NODES.mSect=function(){
+ var m=M();var c=[];var t='【師門】\n';
+ if(!m.sect){
+  t+='你尚未拜入任何師門。拜師需 Lv.2 以上與 50 金拜師禮，師門可學專屬技能、累積貢獻晉級（晉級加屬性）。\n';
+  for(var i=0;i<SECT_ORDER.length;i++){var s=SECTS[SECT_ORDER[i]];t+='・'+s.n+'（主屬性 '+ST_NAMES[s.st]+'）— '+s.d+'\n';c.push(ch('拜入「'+s.n+'」','mSectJoin',{k:SECT_ORDER[i]}));}
+ }else{
+  var s2=SECTS[m.sect];var r=MS.sRank();
+  t+=s2.n+'　身份：'+SRANK[r]+'　貢獻 '+m.sc+(r<4?'（下一級 '+SRANK_AT[r+1]+'）':'')+'\n師尊：'+nm(s2.m)+'\n\n〔可學技能〕\n';
+  for(var j=0;j<s2.sk.length;j++){var q=s2.sk[j],k=q[0];var has=m.sk[k];
+   t+=(has?'✔':(r>=q[1]?'○':'🔒'))+' '+MSK[k].n+'　需身份【'+SRANK[q[1]]+'】、金'+q[2]+'\n';
+   if(!has&&r>=q[1])c.push(ch('學習「'+MSK[k].n+'」（'+q[2]+'金）','mSectLearn',{id:k}));}
+  c.push(ch('捐獻 100 金（+10 貢獻）','mSectDonate'));
+  c.push(ch('退出師門（貢獻清零）','mSectQuit'));
+ }
+ c.push(mBack());
+ return scene(t,'',{kind:'menu',bg:S.p.spot,ch:c});
+};
+NODES.mSectJoin=function(a){
+ var m=M();var s=SECTS[a.k];if(!s||m.sect)return NODES.mSect();
+ if(m.lv<2)return resultScene('拜師','「再歷練歷練吧。」（需 Lv.2）','',S.p.spot,[ch('返回','mSect')]);
+ if(S.p.st.gold<50)return resultScene('拜師','你的拜師禮不夠（需 50 金）。','',S.p.spot,[ch('返回','mSect')]);
+ S.p.st.gold-=50;m.sect=a.k;m.sc=0;m.sr=0;
+ var fx={rel:{}};if(NPC[s.m]&&alive(s.m)){fx.rel[s.m]={tr:6,af:5,re:6};}
+ applyFx(fx);addLog('拜入師門：'+s.n);
+ return resultScene('拜師','你鄭重行禮，拜入「'+s.n+'」。'+(NPC[s.m]?'\n'+nm(s.m)+'頷首：「既入我門，便要守我門規。」':''),'',S.p.spot,[ch('查看師門','mSect'),ch('繼續','hub')]);
+};
+NODES.mSectLearn=function(a){
+ var m=M();var s=SECTS[m.sect];if(!s)return NODES.mSect();
+ var q=null;for(var i=0;i<s.sk.length;i++)if(s.sk[i][0]===a.id)q=s.sk[i];
+ if(!q||MS.sRank()<q[1])return NODES.mSect();
+ if(S.p.st.gold<q[2])return resultScene('師門','金錢不足（需 '+q[2]+'）。','',S.p.spot,[ch('返回','mSect')]);
+ S.p.st.gold-=q[2];MS.learn(a.id);
+ return resultScene('師門','你習得了「'+MSK[a.id].n+'」。用 skill 準備武功即可上陣。','',S.p.spot,[ch('返回師門','mSect'),ch('🌀 準備武功','mSkill')]);
+};
+NODES.mSectDonate=function(){
+ var m=M();if(S.p.st.gold<100)return resultScene('師門','金錢不足。','',S.p.spot,[ch('返回','mSect')]);
+ S.p.st.gold-=100;m.sc+=10;var sr=MS.sectCheck();
+ return resultScene('師門','你捐出 100 金，貢獻 +10。'+(sr?'\n'+sr:''),'',S.p.spot,[ch('返回','mSect')]);
+};
+NODES.mSectQuit=function(){var m=M();m.sect='';m.sc=0;m.sr=0;return resultScene('師門','你向師尊行了最後一禮，離開了師門。','',S.p.spot,[ch('返回','mSect')]);};
+/* ---- 榜單 ---- */
+NODES.mRank=function(a){
+ var kind=(a&&a.k)||'pow';var rows=MS.board(kind);var t='【天下榜·'+BOARD_N[kind]+'】\n';var pos=0;
+ for(var i=0;i<rows.length;i++){if(rows[i].me)pos=i+1;}
+ for(i=0;i<Math.min(10,rows.length);i++)t+=(i+1<10?' ':'')+(i+1)+'. '+rows[i].n+'　'+rows[i].v+(rows[i].me?'　◀':'')+'\n';
+ if(pos>10)t+='……\n'+pos+'. '+rows[pos-1].n+'　'+rows[pos-1].v+'　◀\n';
+ t+='\n你位居第 '+pos+' / '+rows.length+' 名。';
+ var c=[];for(var k in BOARD_N)if(k!==kind)c.push(ch(BOARD_N[k],'mRank',{k:k}));c.push(mBack());
+ return scene(t,'',{kind:'menu',bg:S.p.spot,ch:c});
+};
+/* ---- 計數掛鉤：不改原有節點，只在選擇時累計日常 ---- */
+(function(){
+ var MAP={duty:'duty',work:'work',train:'train',doTalk:'talk',dt:'talk',rest:'rest',goSpot:'move',travel:'move',talkMenu:'talk'};
+ var _ch=choose;
+ choose=function(c){
+  var r=_ch(c);
+  try{if(S&&c&&c.go&&MAP[c.go]&&!(c.go==='dt'&&c.a&&c.a.k!=='start')){MS.bump(MAP[c.go],1);}}catch(e){}
+  return r;
+ };
+})();
+
+/* ---- 47_mud.js ---- */
+/* ===== 47: MUD 介面核心（日誌輸出、房間、狀態列、選項、打字機、掛接）===== */
+DEFSET.ui='mud';DEFSET.mtheme='green';DEFSET.mfs=16;DEFSET.mtw=3;DEFSET.mimg=false;DEFSET.mside=true;DEFSET.mkeys='';
+var Mud={on:false,ready:false,cur:null,curId:0,hist:[],hi:-1,typing:null,path:[],noType:false,lastIdle:0,pending:null};
+var SPOS={garden:[0,0],palace:[1,0],chamber:[2,0],water:[0,1],market:[1,1],study:[2,1],wild:[3,1],tea:[0,2],gate:[1,2],inn:[2,2],battle:[3,2],pharm:[0,3],cloth:[1,3],prison:[2,3],home:[3,3]};
+var SSHORT={palace:'宮城',chamber:'後宮',garden:'上林',water:'渭水',market:'市集',study:'書房',tea:'酒肆',gate:'城門',inn:'客舍',pharm:'藥舖',prison:'牢獄',wild:'山野',battle:'戰場',cloth:'布庄',home:'府邸'};
+var SALIAS={palace:['宮','王宮','宮城','咸陽宮','宮殿'],chamber:['後宮','章台','寢宮'],garden:['園','苑','上林','上林苑','花園'],water:['水','渭水','蘭池','河','池'],market:['市','集','市集','咸陽市','街'],study:['書','書房','密室'],tea:['酒','茶','酒肆','茶寮','酒館'],gate:['門','城門','營','軍營','關'],inn:['客','客舍','客棧','旅店'],pharm:['藥','藥舖','藥鋪'],prison:['牢','獄','牢獄','大牢'],wild:['野','山野','野外','山','林'],battle:['戰場','沙場'],cloth:['布','布庄','布莊'],home:['家','府','府邸','宅']};
+var DIRN={n:'北',s:'南',e:'東',w:'西',ne:'東北',nw:'西北',se:'東南',sw:'西南'};
+var DIRALIAS={n:'n',north:'n',北:'n',上:'n',s:'s',south:'s',南:'s',下:'s',e:'e',east:'e',東:'e',右:'e',w:'w',west:'w',西:'w',左:'w',ne:'ne',東北:'ne',nw:'nw',西北:'nw',se:'se',東南:'se',sw:'sw',西南:'sw'};
+function mSign(v){return v>0?1:(v<0?-1:0);}
+function dirKey(dx,dy){var v=mSign(dy)<0?'n':(mSign(dy)>0?'s':'');var h=mSign(dx)>0?'e':(mSign(dx)<0?'w':'');return v+h;}
+function mHtml(s){return esc(s);}
+Mud.log=function(){return $('mlog');};
+Mud.add=function(html,cls){
+ var l=Mud.log();if(!l)return null;var d=document.createElement('div');d.className='ln'+(cls?' '+cls:'');d.innerHTML=html;l.appendChild(d);
+ while(l.children.length>700)l.removeChild(l.firstChild);
+ Mud.scroll(true);return d;
+};
+Mud.line=function(t,cls){return Mud.add(esc(t),cls);};
+Mud.sys=function(t){return Mud.add(esc(t),'c-sys');};
+Mud.note=function(t){if(Mud.on){Mud.add('<span class="c-note">[通知]</span> '+esc(t),'c-sys');}else{try{toast(t,3000);}catch(e){}}};
+Mud.scroll=function(force){var l=Mud.log();if(!l)return;if(force||l.scrollHeight-l.scrollTop-l.clientHeight<200)l.scrollTop=l.scrollHeight+9999;};
+Mud.clear=function(){Mud.flush();var l=Mud.log();if(l)l.innerHTML='';Mud.cur=null;};
+/* ---- 打字機：逐字顯示 HTML 內的文字節點 ---- */
+Mud.flush=function(){var t=Mud.typing;if(t){Mud.typing=null;clearInterval(t.timer);for(var i=0;i<t.nodes.length;i++)t.nodes[i].n.data=t.nodes[i].s;var cb=t.cb;if(cb)cb();}};
+Mud.typeInto=function(el,html,cb){
+ el.innerHTML=html;
+ var tw=SET.mtw|0;if(!tw||Mud.noType){if(cb)cb();return;}
+ var nodes=[],total=0;
+ (function walk(n){for(var c=n.firstChild;c;c=c.nextSibling){if(c.nodeType===3){nodes.push({n:c,s:c.data});total+=c.data.length;}else if(c.nodeType===1){walk(c);}}})(el);
+ if(total<14){if(cb)cb();return;}
+ for(var i=0;i<nodes.length;i++)nodes[i].n.data='';
+ var base=[0,2,4,8,16,40][clamp(tw,1,5)];var per=Math.max(base,Math.ceil(total/(2800/28)));
+ var idx=0,pos=0,shown=0;
+ var t={nodes:nodes,cb:cb};
+ t.timer=setInterval(function(){
+  var left=per;
+  while(left>0&&idx<nodes.length){var nd=nodes[idx];var take=Math.min(left,nd.s.length-pos);pos+=take;left-=take;nd.n.data=nd.s.slice(0,pos);if(pos>=nd.s.length){idx++;pos=0;}}
+  Mud.scroll(false);
+  if(idx>=nodes.length){clearInterval(t.timer);Mud.typing=null;if(cb)cb();}
+ },28);
+ Mud.typing=t;
+};
+/* ---- 小地圖 ---- */
+Mud.mapHtml=function(){
+ if(!S)return '';var reg=REGIONS[S.p.region];var subs=reg.sub;var cells={};var maxc=0,maxr=0;
+ for(var i=0;i<subs.length;i++){var p=SPOS[subs[i]]||[1,3];cells[p[0]+','+p[1]]=subs[i];if(p[0]>maxc)maxc=p[0];if(p[1]>maxr)maxr=p[1];}
+ var h='<div class="mm">';
+ for(var r=0;r<=maxr;r++){h+='<div class="mr">';
+  for(var c=0;c<=maxc;c++){var sp=cells[c+','+r];
+   if(!sp)h+='<span class="mc"></span>';
+   else if(sp===S.p.spot)h+='<span class="mc me">◆'+SSHORT[sp]+'</span>';
+   else h+='<span class="mc on" data-cmd="go '+esc(SSHORT[sp])+'">'+SSHORT[sp]+'</span>';}
+  h+='</div>';}
+ return h+'</div>';
+};
+Mud.mapText=function(){
+ if(!S)return '';var reg=REGIONS[S.p.region];var cells={},maxc=0,maxr=0;
+ for(var i=0;i<reg.sub.length;i++){var p=SPOS[reg.sub[i]]||[1,3];cells[p[0]+','+p[1]]=reg.sub[i];if(p[0]>maxc)maxc=p[0];if(p[1]>maxr)maxr=p[1];}
+ var out=[];var top='┌',mid='├';
+ for(var r=0;r<=maxr;r++){
+  var l1='',l2='';
+  for(var c=0;c<=maxc;c++){var sp=cells[c+','+r];var nm_=sp?(sp===S.p.spot?'◆'+SSHORT[sp]:SSHORT[sp]):'　　';if(sp&&sp!==S.p.spot)nm_=nm_+'　';if(!sp)nm_='　　　';
+   l2+='│'+nm_;}
+  out.push('　'+l2+'│');
+ }
+ return out.join('\n');
+};
+/* ---- 房間資訊 ---- */
+Mud.weatherText=function(){
+ var t=todNow(),se={spring:'春',summer:'夏',autumn:'秋',winter:'冬'}[seasonOf()];
+ var w=weatherFor(S.p.spot);var wt={rain:'細雨綿綿',snow:'雪花紛飛',petal:'落英繽紛','':''}[w]||'';
+ var hn=hrName();var light=(/清晨|上午|正午|午後/.test(hn))?'日光明亮':(/傍晚|黃昏/.test(hn)?'暮色漸沉':'夜色深沉');
+ var tx=se+'日'+hrName()+'，'+light+(wt?'，'+wt:'，'+({spring:'春風拂面',summer:'暑氣蒸人',autumn:'秋風蕭瑟',winter:'寒氣逼人'}[seasonOf()]))+'。';
+ return tx;
+};
+Mud.spotsExits=function(){
+ var reg=REGIONS[S.p.region];var from=SPOS[S.p.spot]||[1,1];var ex=[];
+ for(var i=0;i<reg.sub.length;i++){var sp=reg.sub[i];if(sp===S.p.spot)continue;var p=SPOS[sp]||[1,3];
+  ex.push({sp:sp,d:dirKey(p[0]-from[0],p[1]-from[1])||'n',dist:Math.abs(p[0]-from[0])+Math.abs(p[1]-from[1])});}
+ ex.sort(function(a,b){return a.dist-b.dist;});return ex;
+};
+Mud.regionExits=function(){
+ var A=REGIONS[S.p.region];var out=[];
+ for(var i=0;i<REGION_IDS.length;i++){var r=REGION_IDS[i];if(r===S.p.region)continue;var B=REGIONS[r];
+  var dx=B.x-A.x,dy=B.y-A.y;var ang=Math.atan2(dy,dx)*180/Math.PI;  /* 0=東, 90=南 */
+  var k;if(ang>=-22.5&&ang<22.5)k='e';else if(ang>=22.5&&ang<67.5)k='se';else if(ang>=67.5&&ang<112.5)k='s';else if(ang>=112.5&&ang<157.5)k='sw';else if(ang>=157.5||ang<-157.5)k='w';else if(ang>=-157.5&&ang<-112.5)k='nw';else if(ang>=-112.5&&ang<-67.5)k='n';else k='ne';
+  out.push({r:r,d:k,days:travelDays(r),dist:regionDist(S.p.region,r)});}
+ out.sort(function(a,b){return a.dist-b.dist;});return out;
+};
+Mud.npcHere=function(){
+ var r=hereNpcs();var here=[],other=[];
+ for(var i=0;i<r.length;i++){var id=r[i];if(NPC[id].child)continue;if(spotOf(id)===S.p.spot)here.push(id);else other.push(id);}
+ return {here:here,other:other};
+};
+Mud.npcLink=function(id){
+ var n=NPC[id];var bang='';try{if(dtList('npc',id).length)bang='<span class="c-note">!</span>';}catch(e){}
+ return bang+'<span class="mlink c-npc" data-cmd="talk '+esc(n.n)+'" style="color:'+facColorOf(id)+';border-color:'+facColorOf(id)+'">'+esc(n.n)+'</span>'+(n.c?'':'')+'<span class="c-dim">('+esc(relLabel(id)||FACTIONS[n.f].n.replace(/·.*/,''))+')</span>';
+};
+Mud.roomHtml=function(){
+ var h='';var rn=regionName(S.p.region),sn=THEMES[S.p.spot];
+ h+='<div class="ln blk c-room">═══ '+esc(rn)+' · '+esc(sn)+' ═══ <span class="c-date">'+esc(dateFull())+'</span></div>';
+ return h;
+};
+Mud.exitsHtml=function(){
+ var sx=Mud.spotsExits(),h='<span class="c-lab">出口：</span>';
+ for(var i=0;i<sx.length;i++){h+='<span class="mlink c-exit" data-cmd="go '+esc(SSHORT[sx[i].sp]||THEMES[sx[i].sp])+'">'+DIRN[sx[i].d]+'['+sx[i].d+'] '+esc(SSHORT[sx[i].sp]||THEMES[sx[i].sp])+'</span>　';}
+ var rx=Mud.regionExits().slice(0,4);
+ h+='<br><span class="c-lab">遠行：</span>';
+ for(i=0;i<rx.length;i++){h+='<span class="mlink c-exit" data-cmd="goto '+esc(REGIONS[rx[i].r].n.replace(/（.*/,'').replace(/·.*/,''))+'">'+DIRN[rx[i].d]+' '+esc(REGIONS[rx[i].r].n.replace(/（.*/,''))+'('+rx[i].days+'日)</span>　';}
+ h+='<span class="mlink c-exit" data-cmd="travel">更多…</span>';
+ return h;
+};
+Mud.peopleHtml=function(){
+ var np=Mud.npcHere();var h='<span class="c-lab">人物：</span>';
+ if(!np.here.length)h+='<span class="c-dim">（此處無人）</span>';
+ else h+=np.here.map(Mud.npcLink).join('　');
+ if(np.other.length)h+='<br><span class="c-dim">　同城另有 '+np.other.length+' 人（people 查看）</span>';
+ return h;
+};
+Mud.picHtml=function(){
+ if(!SET.mimg||!S)return '';return '<canvas class="mpic" width="320" height="180"></canvas>';
+};
+Mud.drawPic=function(el){
+ try{var theme=themeOf(S.p.spot);var reg=REGIONS[S.p.region];
+  Art.render(el,theme,{tod:todNow(),figs:[],big:false,weather:SET.anim?weatherFor(theme):'',seed:REGION_IDS.indexOf(S.p.region),regionId:S.p.region,here:S.p.spot,city:reg&&reg.cn?reg.cn:'京城',season:seasonOf()});}catch(e){}
+};
+/* ---- 選項 ---- */
+Mud.choicesHtml=function(list,id){
+ var h='<div class="mchs" data-id="'+id+'">',last=null;
+ for(var i=0;i<list.length;i++){var c=list[i];
+  if(c.g&&c.g!==last){h+='<div class="cg">── '+esc(c.g==='此地'?'此地可為':c.g)+' ──</div>';last=c.g;}
+  var back=/^(↩|◀|下一頁|📜|返回|繼續)/.test(c.t)&&c.t.length<8;
+  h+='<button type="button" class="mch'+(c.t.length>20?' wide':'')+(c.ai?' ai':'')+(back?' back':'')+'" data-i="'+i+'"><b>'+(i+1)+'</b>'+esc(c.t)+'</button>';}
+ return h+'</div>';
+};
+Mud.setChoices=function(list0,host){
+ var list=[],gs=[],seen={};
+ for(var gi=0;gi<list0.length;gi++){var gk=list0[gi].g||'';if(!seen[gk]){seen[gk]=1;gs.push(gk);}}
+ for(var gj=0;gj<gs.length;gj++){for(gi=0;gi<list0.length;gi++){if((list0[gi].g||'')===gs[gj])list.push(list0[gi]);}}
+ var old=document.querySelectorAll('#mlog .mchs');for(var i=0;i<old.length;i++)old[i].className='mchs stale';
+ Mud.curId++;var id=Mud.curId;
+ Mud.cur=Mud.cur||{};Mud.cur.ch=list;Mud.cur.id=id;
+ var d=document.createElement('div');d.innerHTML=Mud.choicesHtml(list,id);var el=d.firstChild;
+ (host||Mud.log()).appendChild(el);Mud.scroll(true);return el;
+};
+/* ---- 場景呈現 ---- */
+Mud.colorLines=function(t){
+ var ls=t.split('\n'),h='';
+ for(var i=0;i<ls.length;i++){var l=ls[i],cl='';
+  if(/^【.*】/.test(l)&&l.length<50)cl='cl-hd';else if(/你受到|不敵|倒在了地上|【敗】|負傷/.test(l))cl='cl-bad';else if(/造成 \d+ 點|要害/.test(l))cl='cl-hit';else if(/閃了過去|閃避/.test(l))cl='cl-dim';else if(/【勝】|回復|修為\+|升到/.test(l))cl='cl-good';
+  h+='<div class="'+cl+'">'+fmtText(l)+'</div>';}
+ return h;
+};
+Mud.sceneHtml=function(sc){
+ var h='';
+ if(sc.kind==='ending')h+='<div class="c-tag">★ 結局 ★</div>';
+ else if(sc.tag)h+='<div class="c-tag">['+esc(sc.tag)+']</div>';
+ if(sc.sp&&NPC[sc.sp]){var n=NPC[sc.sp];var rl=S?relLabel(sc.sp):'';
+  h+='<div><span class="c-spk" style="color:'+facColorOf(sc.sp)+'">◆ '+esc(n.n)+(n.c?'（'+esc(n.c)+'）':'')+'</span> <span class="c-dim">'+esc(FACTIONS[n.f].n.replace(/·.*/,''))+(rl?'·'+esc(rl):'')+'</span></div>';}
+ if(sc.ai)h+='<div class="ai">✦ AI 生成</div>';
+ if(sc.kind==='fight'||(sc.kind==='result'&&/【(勝|敗)】/.test(sc.t||'')))h+='<div>'+Mud.colorLines(sc.t||'')+'</div>';
+ else h+='<div>'+fmtText(sc.t||'')+'</div>';
+ return h;
+};
+Mud.show=function(sc){
+ /* 與原 showScene 相同的狀態記錄 */
+ UIs.offer=null;try{renderOffer();}catch(e0){}
+ if(UIs.shown&&UIs.shown!==sc){try{histPush(UIs.shown);}catch(eh){}}
+ UIs.shown=sc;
+ Mud.flush();
+ if(!Mud.ready)return;
+ var l=Mud.log();
+ if(sc.kind==='hub'&&S){
+  var blk=document.createElement('div');blk.className='ln';
+  var text=(sc.t||'').split('\n');
+  if(/^【/.test(text[0]))text.shift();
+  var body=text.join('\n');
+  var html=Mud.roomHtml();
+  var d0=document.createElement('div');d0.innerHTML=html;l.appendChild(d0.firstChild);
+  if(SET.mimg){var cv=document.createElement('canvas');cv.className='mpic';cv.width=320;cv.height=180;l.appendChild(cv);Mud.drawPic(cv);}
+  var dsc=document.createElement('div');dsc.className='ln c-desc';l.appendChild(dsc);
+  var rest=document.createElement('div');rest.className='ln';l.appendChild(rest);
+  var wx='<span class="c-dim">'+esc(Mud.weatherText())+'</span>\n';
+  Mud.cur={sc:sc,ch:sc.ch,id:0};
+  Mud.typeInto(dsc,wx+fmtText(body),function(){
+   rest.innerHTML=Mud.mapHtml()+'<div>'+Mud.exitsHtml()+'</div><div>'+Mud.peopleHtml()+'</div>';
+   Mud.setChoices(sc.ch);
+   Mud.afterShow(sc);
+  });
+ }else{
+  var b=document.createElement('div');b.className='ln blk';l.appendChild(b);
+  if(SET.mimg&&S&&(sc.kind!=='ending')&&sc.bg){var cv2=document.createElement('canvas');cv2.className='mpic';cv2.width=320;cv2.height=180;l.insertBefore(cv2,b);Mud.drawPic(cv2);}
+  Mud.cur={sc:sc,ch:sc.ch,id:0};
+  Mud.typeInto(b,Mud.sceneHtml(sc),function(){
+   if(sc.ch&&sc.ch.length)Mud.setChoices(sc.ch);
+   Mud.afterShow(sc);
+  });
+ }
+ Mud.status();
+ Mud.scroll(true);
+ try{if(sc.kind==='event'||sc.kind==='result'){SND.sfx('page');}}catch(e){}
+ var inp=$('mcmd');if(inp&&!document.querySelector('.ov.on')&&!Mud.noFocus){try{inp.focus({preventScroll:true});}catch(e){}}
+};
+Mud.afterShow=function(sc){
+ /* 自動路徑：goto 的後續步驟 */
+ if(Mud.path.length){
+  if(sc.kind==='hub'){var st=Mud.path.shift();setTimeout(function(){Mud.step(st);},30);}
+  else if(sc.kind==='result'&&sc.ch.length===1&&sc.ch[0].go==='hub'){setTimeout(function(){if(Mud.cur&&Mud.cur.sc===sc)Mud.pick(0);},30);}
+  else if(sc.kind==='event'||sc.kind==='fight'||sc.kind==='ending'||sc.kind==='talk'){Mud.path=[];}
+ }
+ Mud.status();
+};
+Mud.step=function(st){
+ if(!S||!st)return;
+ if(st.t==='travel'){Mud.add('<span class="c-echo">&gt; （自動前往）'+esc(REGIONS[st.to].n)+'</span>','c-echo');choose({go:'travel',a:{to:st.to},t:'travel'});}
+ else if(st.t==='spot'){if(st.sp===S.p.spot){return;}Mud.add('<span class="c-echo">&gt; （自動前往）'+esc(THEMES[st.sp])+'</span>','c-echo');choose({go:'goSpot',a:{sp:st.sp},t:'go'});}
+};
+/* ---- 狀態列／側欄 ---- */
+Mud.bar=function(v,max,n){n=n||10;var f=Math.round(clamp(v/max,0,1)*n);var s='';for(var i=0;i<n;i++)s+=i<f?'█':'░';return s;};
+Mud.status=function(){
+ var t1=$('mt1'),t2=$('mt2');if(!t1)return;
+ if(!S||!S.p){t1.innerHTML='<b>浮生天下</b> <span class="c-dim">戰國末年·秦王政</span>';t2.textContent='輸入 new 開始新遊戲，或 load 讀檔';Mud.side();return;}
+ var p=S.p,hp=p.st.hp;
+ t1.innerHTML='<b>'+esc(p.name)+'</b> <span class="ttl">'+esc(p.title)+'</span> <span class="hb '+(hp>=40?'ok':'')+'"><i style="width:'+clamp(hp,0,100)+'%"></i></span>'+hp+' <span style="color:#ffd75f">金'+p.st.gold+'</span>';
+ var m=null;try{m=M();}catch(e){}
+ var idle='';if(m&&m.idle){var tk=MS.idleTicks();idle=' ⏳掛機'+tk+'分'+(tk>=1?'✔':'');}
+ var cl='';try{var c=MS.claimable();if(c)cl=' 📬'+c;}catch(e){}
+ t2.textContent=dateFull()+' ｜ '+regionName(p.region)+'·'+THEMES[p.spot]+(m?' ｜ Lv.'+m.lv:'')+idle+cl;
+ Mud.side();
+ Mud.chips();
+};
+Mud.side=function(){
+ var el=$('mside');if(!el||!document.body.classList.contains('mside-on'))return;
+ if(!S||!S.p){el.innerHTML='<h5>狀態</h5>尚未開局';return;}
+ var p=S.p,st=p.st,m=M(),h='';
+ h+='<h5>'+esc(p.name)+'　'+esc(p.title)+'</h5>';
+ h+='<div class="sr">Lv.'+m.lv+' <span class="bar">'+Mud.bar(m.exp,MS.need(m.lv),8)+'</span> '+m.exp+'/'+MS.need(m.lv)+'</div>';
+ h+='<div class="sr">健康 <span class="bar">'+Mud.bar(st.hp,100,10)+'</span> '+st.hp+'</div>';
+ var ks=[['wu','武'],['zhi','智'],['zheng','政'],['mei','魅'],['tong','統'],['stealth','隱']];
+ for(var i=0;i<ks.length;i+=2){h+='<div class="sr">'+ks[i][1]+' '+pStat(ks[i][0])+'　'+ks[i+1][1]+' '+pStat(ks[i+1][0])+'</div>';}
+ h+='<div class="sr">金 '+st.gold+'　聲望 '+st.rep+'</div><div class="sr">功勳 '+st.merit+'　'+(p.path==='soldier'?'爵 '+JUE[jueLv()-1]:'')+'</div>';
+ h+='<h5>地圖</h5>'+Mud.mapHtml();
+ h+='<h5>人物</h5><div>'+Mud.npcHere().here.map(Mud.npcLink).join('<br>')+'</div>';
+ var aq=[];for(var q=0;q<S.quests.length;q++)if(S.quests[q].s==='active')aq.push(S.quests[q]);
+ if(aq.length){h+='<h5>任務</h5>';for(q=0;q<Math.min(3,aq.length);q++)h+='<div class="c-dim">· '+esc(aq[q].t)+'</div>';}
+ var pr='';try{var mm=MS.tasks();var dn=0;for(q=0;q<mm.dq.list.length;q++)if(mm.dq.list[q].have>=mm.dq.list[q].need)dn++;pr='日常 '+dn+'/'+mm.dq.list.length;}catch(e){}
+ h+='<h5>今日</h5><div class="c-dim">'+pr+'</div>';
+ el.innerHTML=h;
+};
+/* ---- 快捷列 ---- */
+var CHIP_DEF=['look','explore','fight','idle','collect','task','stat','i','map','skill','people','help'];
+var CHIP_LAB={look:'看',explore:'探索',fight:'戰鬥',idle:'掛機',collect:'收取',task:'任務',stat:'狀態',i:'行囊',map:'地圖',skill:'技能',people:'人物',help:'說明',rest:'休息',work:'當差',sect:'師門',rank:'榜',quests:'任務簿',book:'人生簿',career:'仕途',save:'存檔',shop:'兵器鋪'};
+Mud.chipList=function(){var k=SET.mkeys;var a=k?k.split('|').filter(function(x){return x;}):CHIP_DEF;return a;};
+Mud.chips=function(){
+ var el=$('mchips');if(!el)return;var a=Mud.chipList();var h='';
+ var hot={};try{if(S){if(M().idle&&MS.idleTicks()>=1)hot.collect=1;if(MS.claimable())hot.task=1;}}catch(e){}
+ for(var i=0;i<a.length;i++){var c=a[i];h+='<button type="button" class="mchip'+(hot[c]?' hot':'')+'" data-cmd="'+esc(c)+'">'+esc(CHIP_LAB[c]||c)+'</button>';}
+ if(el.getAttribute('data-h')!==h){el.innerHTML=h;el.setAttribute('data-h',h);}
+};
+/* ---- 提示／自動補全 ---- */
+Mud.hint=function(){
+ var el=$('mhint'),inp=$('mcmd');if(!el||!inp)return;var v=inp.value;
+ if(!v.trim()){el.innerHTML='';return;}
+ var sg=Mud.suggest(v);var h='';for(var i=0;i<sg.length&&i<6;i++)h+='<button type="button" class="mchip" data-fill="'+esc(sg[i])+'">'+esc(sg[i])+'</button>';
+ el.innerHTML=h;
+};
+/* ---- 顯示選單／標題 ---- */
+Mud.title=function(){
+ Mud.flush();
+ var lat=null;try{lat=latestSlot();}catch(e){}
+ var banner='╔═══════════════\n║  浮　生　天　下 · 秦宮篇\n║  前247年．一介無名，浮沉大秦\n╚═══════════════';
+ Mud.add(esc(banner),'ln blk c-title');
+ var ch_=[];
+ ch_.push({t:'⚔ 開始新遊戲',fn:function(){wizardOpen();}});
+ if(S)ch_.push({t:'▶ 返回目前遊戲',fn:function(){if(S.scene)Mud.show(S.scene);}});
+ if(lat!==null)ch_.push({t:'📂 繼續（最近存檔）',fn:function(){loadSlot(lat);}});
+ ch_.push({t:'💾 讀取／匯入存檔',fn:function(){openPanel('save');}});
+ ch_.push({t:'⚙ 設定（含 AI）',fn:function(){openPanel('set');}});
+ ch_.push({t:'🏆 結局圖鑑',fn:function(){openPanel('end');}});
+ ch_.push({t:'❓ 玩法說明',fn:function(){Mud.help('');}});
+ ch_.push({t:'🖼 切換為舊版圖形介面',fn:function(){Mud.setUI('gfx');}});
+ Mud.add('<span class="c-dim">純單檔離線遊戲。輸入 help 查看指令；沒有 API Key 也能完整遊玩，AI 可在設定中啟用。</span>');
+ Mud.cur={sc:null,ch:ch_,id:0};
+ Mud.setChoices(ch_);
+ Mud.status();
+};
+/* ---- 介面切換 ---- */
+Mud.moveExt=function(on){
+ var ext=$('mext'),off=$('aioffer'),bar=$('aibar');if(!ext||!off||!bar)return;
+ if(on){ext.appendChild(bar);ext.appendChild(off);}
+ else{var app=$('app'),main=$('main'),bottom=$('bottom');if(app&&main)app.insertBefore(bar,main);if(bottom)bottom.insertBefore(off,bottom.firstChild);}
+};
+Mud.applyLookClasses=function(){
+ var b=document.body;var c=b.className.replace(/\b(mud|mt-green|mt-amber|mt-white|mside-on)\b/g,'').replace(/\s+/g,' ');
+ if(Mud.on)c+=' mud mt-'+(['green','amber','white'].indexOf(SET.mtheme)>=0?SET.mtheme:'green');
+ if(Mud.on&&SET.mside&&(window.innerWidth>=900||Mud.sideOpen))c+=' mside-on';
+ b.className=c.replace(/^\s+/,'');
+ document.documentElement.style.setProperty('--mfs',clamp(SET.mfs||16,12,26)+'px');
+ var m=$('mud');if(m){var h=(window.visualViewport&&Mud.on)?window.visualViewport.height:window.innerHeight;m.style.height=Math.round(h)+'px';}
+};
+Mud.setUI=function(v){
+ SET.ui=(v==='gfx')?'gfx':'mud';saveSettings();
+ var was=Mud.on;Mud.on=(SET.ui==='mud');
+ Mud.moveExt(Mud.on);Mud.applyLookClasses();
+ if(Mud.on){if(UIs.animT){clearInterval(UIs.animT);UIs.animT=null;}Mud.ready=true;
+  if(!was){Mud.log().innerHTML='';if(S&&S.scene){Mud.show(S.scene);}else Mud.title();}}
+ else{startAnim();applyLook();if(S&&S.scene){_showScene0(S.scene);}else{showMenu();}}
+ Mud.status();
+};
+Mud.applySet=function(k){
+ if(k==='ui'){Mud.setUI(SET.ui);return;}
+ Mud.applyLookClasses();Mud.chips();Mud.status();
+};
+/* ---- 啟動與掛接 ---- */
+var _showScene0=showScene;
+showScene=function(sc){if(Mud.on)return Mud.show(sc);return _showScene0(sc);};
+var _refreshHud0=refreshHud;
+refreshHud=function(){if(Mud.on){Mud.status();return;}return _refreshHud0();};
+var _showMenu0=showMenu;
+showMenu=function(){if(Mud.on){UIs.mode='menu';UIs.panel='';closeModal();Mud.title();return;}return _showMenu0();};
+var _startAnim0=startAnim;
+startAnim=function(){if(Mud.on)return;return _startAnim0();};
+var _loadSettings0=loadSettings;
+loadSettings=function(){
+ _loadSettings0();
+ Mud.on=(SET.ui!=='gfx');
+};
+var _applyLook0=applyLook;
+applyLook=function(){_applyLook0();Mud.applyLookClasses();};
+var _loadObj0=loadObj;
+loadObj=function(o){if(Mud.on&&validSave(o)){Mud.clear();}return _loadObj0(o);};
+var _startGame0=startGame;
+startGame=function(cfg){if(Mud.on)Mud.clear();return _startGame0(cfg);};
+var _setChange0=setChange;
+setChange=function(t,live){
+ _setChange0(t,live);
+ var k=t.getAttribute&&t.getAttribute('data-set');
+ if(k==='ui'||k==='mtheme'||k==='mfs'||k==='mtw'||k==='mimg'||k==='mside'){try{Mud.applySet(k);}catch(e){if(window.console)console.error(e);}}
+};
+var _closeModal0=closeModal;
+closeModal=function(){_closeModal0();if(Mud.on&&!Mud.noFocus){var i=$('mcmd');if(i&&window.innerWidth>=700){try{i.focus({preventScroll:true});}catch(e){}}}};
+var _barShow0=barShow;
+barShow=function(kind,msg,goSet,ms){_barShow0(kind,msg,goSet,ms);if(Mud.on&&kind==='err'){try{Mud.add('<span class="c-bad">⚠ '+esc(msg)+'</span>');}catch(e){}}};
+/* 設定頁新增「介面」區塊 */
+(function(){
+ var i=-1;for(var k=0;k<SETSCHEMA.length;k++){if(SETSCHEMA[k][0]==='h'&&SETSCHEMA[k][1]==='📖 閱讀與遊戲'){i=k;break;}}
+ if(i<0)i=SETSCHEMA.length;
+ var rows=[['h','🖥 介面'],
+  ['ui','select','介面樣式',[['mud','MUD 文字介面（預設）'],['gfx','舊版圖形介面']]],
+  ['mtheme','select','MUD 配色',[['green','綠色終端'],['amber','琥珀色'],['white','白字']]],
+  ['mfs','range','MUD 字體大小',12,26,1],
+  ['mtw','range','打字機速度（0=關閉）',0,5,1],
+  ['mimg','check','MUD：場景小圖（像素畫）'],
+  ['mside','check','MUD：桌面側欄（狀態／地圖）']];
+ SETSCHEMA.splice.apply(SETSCHEMA,[i,0].concat(rows));
+})();
+/* 事件綁定與初始化（boot 時呼叫）*/
+Mud.init=function(){
+ if(Mud.ready&&Mud.bound)return;
+ Mud.bound=1;
+ var log=$('mlog');
+ log.addEventListener('click',function(e){
+  var t=e.target;
+  while(t&&t!==log&&!(t.getAttribute&&(t.getAttribute('data-cmd')||t.classList.contains('mch'))))t=t.parentNode;
+  if(!t||t===log){Mud.flush();return;}
+  if(t.classList.contains('mch')){var box=t.parentNode;if(box.className.indexOf('stale')>=0)return;Mud.pick(parseInt(t.getAttribute('data-i'),10));return;}
+  var c=t.getAttribute('data-cmd');if(c)Mud.exec(c,true);
+ });
+ $('mchips').addEventListener('click',function(e){var t=e.target;if(t&&t.getAttribute&&t.getAttribute('data-cmd')){SND.init();Mud.exec(t.getAttribute('data-cmd'),true);}});
+ $('mhint').addEventListener('click',function(e){var t=e.target;var f=t&&t.getAttribute&&t.getAttribute('data-fill');if(f!==null&&f!==undefined){var i=$('mcmd');i.value=f;Mud.hint();try{i.focus();}catch(x){}}});
+ $('mside').addEventListener('click',function(e){var t=e.target;while(t&&t!==this&&!(t.getAttribute&&t.getAttribute('data-cmd')))t=t.parentNode;if(t&&t!==this)Mud.exec(t.getAttribute('data-cmd'),true);});
+ $('mform').addEventListener('submit',function(e){e.preventDefault();SND.init();Mud.submit();});
+ var inp=$('mcmd');
+ inp.addEventListener('input',Mud.hint);
+ inp.addEventListener('keydown',function(e){
+  var k=e.key||'';
+  if(k==='Tab'){e.preventDefault();var sg=Mud.suggest(inp.value);if(sg.length){inp.value=sg[0];Mud.hint();}}
+  else if(k==='ArrowUp'){e.preventDefault();if(Mud.hist.length){Mud.hi=Mud.hi<0?Mud.hist.length-1:Math.max(0,Mud.hi-1);inp.value=Mud.hist[Mud.hi];}}
+  else if(k==='ArrowDown'){e.preventDefault();if(Mud.hi>=0){Mud.hi++;if(Mud.hi>=Mud.hist.length){Mud.hi=-1;inp.value='';}else inp.value=Mud.hist[Mud.hi];}}
+  else if(k==='Escape'){inp.value='';Mud.hint();}
+  else if(k==='PageUp'){log.scrollTop-=log.clientHeight*0.8;}
+  else if(k==='PageDown'){log.scrollTop+=log.clientHeight*0.8;}
+ });
+ $('mpanelbtn').onclick=function(){Mud.sideOpen=!document.body.classList.contains('mside-on');if(window.innerWidth>=900){SET.mside=!SET.mside;saveSettings();}else{ }Mud.toggleSide();};
+ $('mmenubtn').onclick=function(){SND.init();showMenu();};
+ window.addEventListener('resize',function(){Mud.applyLookClasses();});
+ if(window.visualViewport){window.visualViewport.addEventListener('resize',function(){Mud.applyLookClasses();Mud.scroll(true);});}
+ setInterval(function(){if(Mud.on&&S){Mud.status();try{var m=M();if(m.idle){var tk=MS.idleTicks();if(tk>=1&&!Mud.idleNoted){Mud.idleNoted=1;Mud.note('⏳ 掛機已有成果，輸入 collect 收取（'+tk+' 分鐘）');}if(tk<1)Mud.idleNoted=0;}}catch(e){}}},15000);
+};
+Mud.toggleSide=function(){
+ var b=document.body;var on=b.classList.contains('mside-on');
+ if(on){b.classList.remove('mside-on');}else{b.classList.add('mside-on');}
+ Mud.side();
+};
+Mud.submit=function(){
+ var inp=$('mcmd');var v=inp.value.replace(/^\s+|\s+$/g,'');inp.value='';$('mhint').innerHTML='';
+ if(!v){if(Mud.typing)Mud.flush();return;}
+ if(Mud.hist[Mud.hist.length-1]!==v){Mud.hist.push(v);if(Mud.hist.length>60)Mud.hist.shift();}
+ Mud.hi=-1;
+ Mud.exec(v,true);
+};
+
+/* ---- 48_mudcmd.js ---- */
+/* ===== 48: MUD 指令解析、別名、自動補全、說明 ===== */
+NODES.mWait=function(a){
+ var n=clamp(a.n||1,1,a.u==='d'?30:12);
+ if(a.u==='d'){applyFx({days:n});return resultScene('靜候','你靜靜等了 '+n+' 日。日出日落，天下依舊在轉。','',S.p.spot,[ch('繼續','hub')]);}
+ timePass(n);return resultScene('靜候','你靜候了 '+n+' 個時辰。'+Mud.weatherText(),'',S.p.spot,[ch('繼續','hub')]);
+};
+NODES.mSell=function(a){
+ var m=M();var g=MS.gearById(a.id);if(!g||m.eq[g.s]===g.id)return NODES.mGear();
+ var p=MS.sellPrice(g);for(var i=0;i<m.gear.length;i++)if(m.gear[i].id===g.id){m.gear.splice(i,1);break;}
+ applyFx({st:{gold:p}});return resultScene('出售','你賣掉了 '+MS.gname(g)+'，得 '+p+' 金。','',S.p.spot,[ch('返回裝備','mGear')]);
+};
+var NPCSTATIC='';
+function npcAll(){var r=[];for(var i=0;i<NPCS.length;i++){var n=NPCS[i];if(!alive(n.id))continue;if(n.hidden&&!S.flags.kh_seen)continue;r.push(n);}return r;}
+function npcFind(q){
+ q=String(q||'').replace(/^\s+|\s+$/g,'');if(!q)return [];
+ var res=[],all=npcAll(),lq=q.toLowerCase();
+ for(var i=0;i<all.length;i++){var n=all[i];var s=0;
+  if(n.n===q)s=100;else if(n.c&&n.c===q)s=95;else if(n.id===lq)s=90;else if(n.n.indexOf(q)>=0)s=70;else if(q.length>=2&&q.indexOf(n.n)>=0)s=60;else if(n.c&&q.length>=2&&n.c.indexOf(q)>=0)s=50;
+  if(!s)continue;
+  if(!(isKnown(n.id)||locOf(n.id)===S.p.region))continue;
+  if(locOf(n.id)===S.p.region)s+=4;if(locOf(n.id)===S.p.region&&spotOf(n.id)===S.p.spot)s+=4;
+  res.push({id:n.id,s:s});}
+ res.sort(function(a,b){return b.s-a.s;});return res;
+}
+function npcPick(q){
+ var r=npcFind(q);if(!r.length)return {id:null,list:[]};
+ if(r.length===1||r[0].s-r[1].s>=8)return {id:r[0].id,list:r};
+ return {id:null,list:r};
+}
+function npcInText(str){
+ var all=npcAll(),best=null;
+ for(var i=0;i<all.length;i++){var n=all[i];var p=str.indexOf(n.n);if(p>=0&&(isKnown(n.id)||locOf(n.id)===S.p.region)){if(!best||p<best.p||(p===best.p&&n.n.length>best.l))best={id:n.id,p:p,l:n.n.length};}}
+ if(!best)return null;return {id:best.id,rest:(str.slice(0,best.p)+' '+str.slice(best.p+best.l)).replace(/^\s+|\s+$/g,'')};
+}
+Mud.npcAmbig=function(list){
+ var h='你指的是哪一位？';for(var i=0;i<Math.min(6,list.length);i++){var id=list[i].id;h+=' <span class="mlink c-npc" data-cmd="look '+esc(nm(id))+'" style="color:'+facColorOf(id)+'">'+esc(nm(id))+'</span>';}
+ Mud.add(h);
+};
+Mud.noNpc=function(q){Mud.add('<span class="c-dim">這裡沒有人叫「'+esc(q)+'」。（people 可查看人物冊）</span>');};
+function placeFind(q){
+ q=String(q||'').replace(/^\s+|\s+$/g,'');if(!q)return null;var lq=q.toLowerCase();
+ var reg=REGIONS[S.p.region];
+ var dk=DIRALIAS[lq]||DIRALIAS[q];
+ if(dk){
+  var sx=Mud.spotsExits();var best=null;
+  for(var i=0;i<sx.length;i++){if(sx[i].d===dk&&(!best||sx[i].dist<best.dist))best=sx[i];}
+  if(!best){for(i=0;i<sx.length;i++){if(sx[i].d.indexOf(dk)>=0&&dk.length===1&&(!best||sx[i].dist<best.dist))best=sx[i];}}
+  if(best)return {t:'spot',sp:best.sp,via:'dir'};
+  var rx=Mud.regionExits();for(i=0;i<rx.length;i++){if(rx[i].d===dk)return {t:'region',to:rx[i].r,via:'dir'};}
+  return {t:'none',dir:dk};
+ }
+ if(lq==='out'||q==='出'||q==='出城'){return reg.sub.indexOf('gate')>=0?{t:'spot',sp:'gate'}:{t:'travelmenu'};}
+ if(lq==='in'||q==='入'||q==='入城'){var s0=(reg.sub0||reg.sub)[0];return {t:'spot',sp:s0};}
+ /* 地點 */
+ for(var j=0;j<reg.sub.length;j++){var sp=reg.sub[j];
+  if(q===THEMES[sp]||q===SSHORT[sp]||lq===sp)return {t:'spot',sp:sp};
+  var al=SALIAS[sp]||[];for(var a=0;a<al.length;a++)if(al[a]===q)return {t:'spot',sp:sp};}
+ for(j=0;j<reg.sub.length;j++){sp=reg.sub[j];if(THEMES[sp].indexOf(q)>=0&&q.length>=1)return {t:'spot',sp:sp};}
+ /* 地區（可含地點，如「邯鄲市集」）*/
+ var cand=null;
+ for(var r=0;r<REGION_IDS.length;r++){var rid=REGION_IDS[r];var rn=REGIONS[rid].n;var names=[rn,rn.replace(/（.*/,''),rn.split('·')[0],rn.replace(/[（）]/g,'')];
+  for(var k=0;k<names.length;k++){var nn=names[k];if(nn&&q.indexOf(nn)===0&&(!cand||nn.length>cand.l)){cand={rid:rid,l:nn.length};}
+   if(nn&&nn.length>=2&&nn.indexOf(q)===0&&q.length>=2&&!cand){cand={rid:rid,l:q.length};}}}
+ if(cand){var rest=q.slice(cand.l).replace(/^[\s·]+/,'');var tsp=null;
+  if(rest){var rg=REGIONS[cand.rid];for(j=0;j<rg.sub.length;j++){var s2=rg.sub[j];if(rest===THEMES[s2]||rest===SSHORT[s2]||(SALIAS[s2]||[]).indexOf(rest)>=0||THEMES[s2].indexOf(rest)>=0)tsp=s2;}}
+  return {t:'region',to:cand.rid,sp:tsp};}
+ /* 人物所在 */
+ var pn=npcPick(q);if(pn.id){var loc=locOf(pn.id);var sp3=null;if(loc===S.p.region){sp3=spotOf(pn.id);if(reg.sub.indexOf(sp3)<0)sp3=null;return sp3?{t:'spot',sp:sp3,npc:pn.id}:{t:'here',npc:pn.id};}
+  var sp4=spotOf(pn.id);return {t:'region',to:loc,sp:(REGIONS[loc].sub.indexOf(sp4)>=0?sp4:null),npc:pn.id};}
+ return null;
+}
+Mud.blocked=function(kind){
+ if(!S){Mud.sys('尚未開局。輸入 new 開始新遊戲，或 load 讀取存檔。');return true;}
+ var m=M();var sc=S.scene;
+ if(m.cb){Mud.add('<span class="c-bad">戰鬥中！</span><span class="c-dim">輸入編號出招，或 auto 自動戰鬥、flee 逃跑、stance 攻|守|巧。</span>');return true;}
+ if(sc&&(sc.kind==='ending'||sc.kind==='loading')){Mud.add('<span class="c-dim">現在不能這麼做。請先選擇上方的選項。</span>');return true;}
+ if(sc&&sc.kind==='event'&&kind!=='free'){Mud.add('<span class="c-warn">眼前的事還沒處理完——請先選擇上方編號的選項。</span><span class="c-dim">（資訊類指令如 stat、i、map、people、help 隨時可用）</span>');return true;}
+ return false;
+};
+Mud.act=function(go,a){choose({go:go,a:a||{},t:'cmd'});};
+/* ---- 資訊輸出 ---- */
+Mud.statText=function(){
+ var p=S.p,st=p.st,m=M(),pa=PATHS[p.path];var o=ORIGINS[p.origin];
+ var L=[];
+ L.push('╔═ '+p.name+'　'+p.title+' ═');
+ L.push('║ '+(p.gender==='f'?'女':'男')+(p.disg?'（易裝）':'')+'　'+p.age+'歲　出身：'+(o?o.n:p.origin)+'　勢力：'+FACTIONS[p.fac].n.replace(/·.*/,''));
+ L.push('║ 難度：'+DN()+'　時間線：'+(OPT().tl==='free'?'自由':'歷史')+'　志向：'+(S.goal||'—'));
+ L.push('║ Lv.'+m.lv+'　修為 '+Mud.bar(m.exp,MS.need(m.lv),10)+' '+m.exp+'/'+MS.need(m.lv)+'　戰力 '+MS.power());
+ var ps=MS.pstats();L.push('║ 氣血 '+ps.hp+'　內力 '+ps.mp+'　攻 '+Math.round(ps.atk)+'　防 '+Math.round(ps.def)+'　姿態 '+({atk:'攻',def:'守',agi:'巧'}[m.stance]));
+ L.push('║ 健康 '+Mud.bar(st.hp,100,12)+' '+st.hp+'　金 '+st.gold+'　聲望 '+st.rep+'　權勢 '+st.inf+'　私兵 '+st.troop);
+ var ks=[['wu','武力'],['zhi','智力'],['zheng','政治'],['mei','魅力'],['tong','統率'],['stealth','隱秘']];
+ for(var i=0;i<ks.length;i+=3){var ln='║ ';for(var j=0;j<3;j++){var k=ks[i+j];ln+=k[1]+' '+Mud.bar(pStat(k[0]),100,6)+' '+pStat(k[0])+'　';}L.push(ln);}
+ var nd=p.rank>=4?0:rankNeed();
+ L.push('║ 職位：'+pa.n+'·'+pa.ranks[Math.min(p.rank,4)]+'　功勳 '+st.merit+(nd?'/'+nd:'（頂）')+(p.path==='soldier'||jueLv()>1?'　爵位：'+JUE[jueLv()-1]+'（'+jueLv()+'/20）':''));
+ L.push('║ 通緝度 '+p.wanted+(m.sect?'　師門：'+SECTS[m.sect].n+'·'+SRANK[MS.sRank()]:'')+(isEunuch()?'　宦者':''));
+ var tr=TRAITS[p.trait];if(tr)L.push('║ 天賦：'+tr.n+'　'+tr.d);
+ L.push('╚ '+dateFull()+'　'+regionName(p.region)+'·'+THEMES[p.spot]);
+ return L.join('\n');
+};
+Mud.invText=function(){
+ var m=M(),L=[];
+ L.push('═ 行囊 ═　金 '+S.p.st.gold);
+ var inv=invList();L.push('物品：'+(inv.length?inv.map(function(k){return ITEMS[k].n+'×'+S.p.items[k];}).join('　'):'（空）')+(inv.length?'　（use <物品> 使用）':''));
+ var x=X();L.push('舊式裝備：兵器 '+eqName(x.eq.w)+'　衣甲 '+eqName(x.eq.r)+'　飾物 '+eqName(x.eq.a));
+ L.push('材料：鐵礦 '+(m.mat.ore||0)+'　獸皮 '+(m.mat.hide||0)+'　玉髓 '+(m.mat.jade||0)+'　令牌 '+(m.mat.token||0));
+ L.push('已裝備：');
+ for(var i=0;i<GORDER.length;i++){var g=MS.gearById(m.eq[GORDER[i]]);L.push('　'+GSLOT[GORDER[i]]+'：'+(g?MS.gearLine(g).slice(1):'—'));}
+ var bag=Mud.bagList();L.push('背包 '+bag.length+' 件'+(bag.length?'（equip <編號> 穿上，sell <編號> 賣出，sell all 賣低階）':''));
+ for(i=0;i<bag.length;i++)L.push(MS.gearLine(bag[i],i+1));
+ var pg_=[];for(var kk in m.pages)if(m.pages[kk]>0&&!m.sk[kk])pg_.push(MSK[kk].n+'殘卷'+m.pages[kk]+'/3');
+ if(pg_.length)L.push('殘卷：'+pg_.join('　'));
+ return L.join('\n');
+};
+Mud.bagList=function(){var m=M();return m.gear.filter(function(g){return m.eq[g.s]!==g.id;});};
+Mud.questText=function(){
+ var L=['═ 任務簿 ═'];var n=0;
+ for(var i=0;i<S.quests.length;i++){var q=S.quests[i];if(q.s==='active'){n++;L.push('◆ '+q.t+'：'+q.d);}}
+ if(!n)L.push('（目前沒有進行中的任務）');
+ try{var pend=sqReady();for(i=0;i<pend.length;i++)L.push('📜 支線可推進：'+pend[i].n+'（第'+(sqStage(pend[i].id)+1)+'章）');}catch(e){}
+ var t=MS.tasks();L.push('日常：'+t.dq.list.map(function(x){return x.n+x.have+'/'+x.need;}).join('、'));
+ L.push('週常：'+t.wq.list.map(function(x){return x.n+x.have+'/'+x.need;}).join('、'));
+ if(MS.claimable())L.push('📬 有獎勵可領：輸入 claim');
+ return L.join('\n');
+};
+Mud.peopleText=function(all){
+ var np=Mud.npcHere();var h='<div class="c-lab">═ 人物冊 ═</div>';
+ h+='<div><span class="c-lab">此處：</span>'+(np.here.length?np.here.map(Mud.npcLink).join('　'):'<span class="c-dim">無</span>')+'</div>';
+ if(np.other.length)h+='<div><span class="c-lab">同城：</span>'+np.other.map(function(id){return Mud.npcLink(id)+'<span class="c-dim">@'+esc(THEMES[spotOf(id)]||'')+'</span>';}).join('　')+'</div>';
+ var els=[];var all_=npcAll();for(var i=0;i<all_.length;i++){var n=all_[i];if(locOf(n.id)===S.p.region||!isKnown(n.id)||n.child)continue;els.push(n);}
+ els.sort(function(a,b){return b.fame-a.fame;});
+ if(els.length){h+='<div><span class="c-lab">他處：</span>'+els.slice(0,all?60:14).map(function(n){return '<span class="mlink c-npc" data-cmd="look '+esc(n.n)+'" style="color:'+facColorOf(n.id)+'">'+esc(n.n)+'</span><span class="c-dim">@'+esc(regionName(locOf(n.id)).replace(/（.*/,''))+'</span>';}).join('　')+(els.length>14&&!all?' <span class="mlink" data-cmd="people all">…全部</span>':'')+'</div>';}
+ return h;
+};
+Mud.lookNpc=function(id){
+ var n=NPC[id],r=R(id);var h='<div class="c-room">◆ '+esc(n.n)+(n.c?'（字'+esc(n.c)+'）':'')+'　<span style="color:'+facColorOf(id)+'">'+esc(FACTIONS[facOf(id)].n)+'</span></div>';
+ h+='<div class="c-desc">'+esc(n.bio||'')+'</div>';
+ h+='<div class="c-dim">'+(n.sex==='f'?'女':'男')+'，約'+esc(String(effAge(id)))+'歲　位階 '+n.tier+'　名望 '+n.fame+'　所在：'+esc(regionName(locOf(id)).replace(/（.*/,''))+(locOf(id)===S.p.region?'·'+esc(THEMES[spotOf(id)]||''):'')+'</div>';
+ if(R(id).met){h+='<div>對你：'+esc(regardWord(id))+'｜'+esc(relLabel(id))+'　<span class="c-dim">信任'+Math.round(r.tr)+' 好感'+Math.round(r.af)+' 懷疑'+Math.round(r.su)+' 恨意'+Math.round(r.ha)+'</span></div>';}
+ else h+='<div class="c-dim">你還沒有與此人正式會面。</div>';
+ h+='<div><span class="mlink" data-cmd="talk '+esc(n.n)+'">[談話]</span>　<span class="mlink" data-cmd="ask '+esc(n.n)+'">[話題]</span>　<span class="mlink" data-cmd="love '+esc(n.n)+'">[情緣]</span>　<span class="mlink" data-cmd="goto '+esc(n.n)+'">[前往]</span></div>';
+ return h;
+};
+Mud.roomStatic=function(){
+ var sp=S.p.spot;var am=(AMBIENT[sp]||AMBIENT.market);var amb=am[S.day%am.length];
+ var l=Mud.log();
+ var d0=document.createElement('div');d0.innerHTML=Mud.roomHtml();l.appendChild(d0.firstChild);
+ var d=document.createElement('div');d.className='ln';d.innerHTML='<span class="c-dim">'+esc(Mud.weatherText())+'</span>\n'+esc(amb)+Mud.mapHtml()+'<div>'+Mud.exitsHtml()+'</div><div>'+Mud.peopleHtml()+'</div>';l.appendChild(d);
+ Mud.scroll(true);
+};
+/* ---- 說明 ---- */
+Mud.HELP=[
+ ['移動與觀察',[
+  ['look [目標]','l 看','觀察四周；look <人物|編號> 查看詳情'],
+  ['go <出口|地點>','去 走 移','在同城移動：go n / go 市集 / 去書房'],
+  ['goto <地點|地區|人物>','前往 到','自動尋路，跨地區會自動遠行：goto 邯鄲、goto 嬴政'],
+  ['travel','遠行','列出可遠行的地區'],
+  ['map','地圖 m','顯示同城小地圖與天下方位'],
+  ['wait [n] [d]','等 候','靜候 n 個時辰（加 d = 日）：wait 3 / 等 2d']]],
+ ['人物與互動',[
+  ['talk <人物>','談 見 拜訪','與人交談（選單）'],
+  ['ask <人物> [話題]','問 請教','專屬話題或：閒談、送禮、進言、請教、試探、借錢、引薦、結拜、切磋…'],
+  ['say <話>','說 \'','自由行動／對話，交給 AI 或離線判定'],
+  ['give <人物>','送 贈','送禮'],
+  ['fight [人物]','戰 打 f','不帶名字＝尋釁討伐；帶名字＝切磋／公開決鬥'],
+  ['attack <人物>','殺 刺殺','策劃刺殺'],
+  ['people [all]','人物冊 p','此處與各地人物'],['who','誰','此處的人物']]],
+ ['江湖歷練（MUD 玩法）',[
+  ['explore [n]','探 探索 e!','探索此地（n 次連續），可能遇敵、拾物、遇人'],
+  ['auto','自動','戰鬥中＝自動戰鬥；平時＝連續探索 5 次'],
+  ['skill / prep <技能>','技能 sk 準備','查看技能；prep 準備或卸下（最多 4 招）'],
+  ['stance <攻|守|巧>','姿態','切換戰鬥姿態'],
+  ['idle [歷練|打工|修練 屬性|當差]','掛機','開始掛機（離線也累計，最多 8 小時）；idle stop 取消'],
+  ['collect','收 收取','收取掛機成果'],
+  ['task / claim','任務榜 日常 領','日常週常任務、領取獎勵'],
+  ['equip/sell/buy/forge','裝 賣 買 淬煉','裝備穿戴、出售、兵器鋪、淬煉 +N'],
+  ['sect [join|learn|donate|quit]','師門','拜師、學技能、貢獻、晉級'],
+  ['rank [pow|fame|wise|rank]','榜 天下榜','本地排行榜']]],
+ ['角色與事業',[
+  ['stat','狀態 score sc','角色狀態'],['i','行囊 inv inventory bag','物品與裝備；use <物品> 使用'],
+  ['career','仕途','官階晉升、賄賂、投奔'],['jue','爵位','秦二十級爵與出征'],
+  ['work','當差 duty','當差；營生用 job'],['rest','睡 休息 sleep','休養十日'],['train [屬性]','修練','修練武力/智力…'],
+  ['quests','任務 q','任務簿'],['book','人生簿','恩仇、承諾、年表、日記'],['log','日誌','最近發生的事']]],
+ ['劇情系統',[
+  ['love [人物]','情緣','追求與相處'],['seduce','風月','宮廷／風月權術'],['plead','求情','受罰、事發時求情'],['bribe','賄賂 打點','賄賂'],
+  ['assassinate','刺殺選單','刺殺／決鬥／偵察'],['scheme','計謀','離間、栽贓等計謀'],['letter','寫信 密信','寫密信'],
+  ['revenge','復仇','復仇線'],['favor <人物>','請託','請託求助'],['goal','志向','更改志向'],['route','路線','前程路線'],['hermit','歸隱','歸隱山林']]],
+ ['系統',[
+  ['save [n]','存','存檔（1-5）'],['load [n|auto]','讀','讀檔'],['saves','存檔列表','存檔槽資料'],['export','匯出','匯出／匯入存檔'],
+  ['settings','設定 ai','設定（含 AI 與 MUD 外觀）'],['menu','主選單','回主選單'],
+  ['theme <green|amber|white>','配色','終端配色'],['font <+|-|大小>','字體','調整字體'],['speed <0-5>','打字速度','打字機速度，0=關閉'],
+  ['ui <mud|gfx>','介面','切換 MUD／舊版圖形介面'],['img <on|off>','小圖','場景小圖'],['sound <on|off>','音效','音效開關'],
+  ['bind <位置> <指令>','快捷','自訂快捷列；bind reset 還原'],['clear','清屏 cls','清除日誌'],['panel','側欄','開關側欄'],['again','!!','重複上一個指令']]]
+];
+Mud.help=function(topic){
+ topic=String(topic||'').replace(/^\s+|\s+$/g,'');
+ var h='';
+ if(topic){
+  var found=false;
+  for(var i=0;i<Mud.HELP.length;i++){for(var j=0;j<Mud.HELP[i][1].length;j++){var e=Mud.HELP[i][1][j];
+   if(e[0].toLowerCase().indexOf(topic.toLowerCase())>=0||e[1].indexOf(topic)>=0){h+='<div><span class="c-exit">'+esc(e[0])+'</span>　<span class="c-dim">別名：'+esc(e[1])+'</span><br>　'+esc(e[2])+'</div>';found=true;}}}
+  if(!found)h='<div class="c-dim">沒有「'+esc(topic)+'」的說明。輸入 help 看全部指令。</div>';
+  Mud.add(h);return;
+ }
+ h+='<div class="c-room">═══ 指令一覽 ═══</div>';
+ h+='<div class="c-dim">直接輸入文字＝自由行動（交給 AI／離線判定）；輸入編號＝選擇上方選項；點擊藍色字也可執行。Tab 補全，↑↓ 翻歷史。</div>';
+ for(var a=0;a<Mud.HELP.length;a++){
+  h+='<div class="c-lab" style="margin-top:4px">【'+esc(Mud.HELP[a][0])+'】</div>';
+  for(var b=0;b<Mud.HELP[a][1].length;b++){var x=Mud.HELP[a][1][b];h+='<div>　<span class="mlink" data-cmd="help '+esc(x[0].split(' ')[0])+'">'+esc(x[0])+'</span> <span class="c-dim">'+esc(x[2])+'</span></div>';}
+ }
+ Mud.add(h,'ln');
+};
+/* ---- 指令表 ---- */
+Mud.CMDS=[];
+function C_(name,al,f,argt){Mud.CMDS.push({n:name,al:al,f:f,at:argt||''});}
+function nodeCmd(name,al,go,a,needAct){C_(name,al,function(){if(needAct!==false&&Mud.blocked())return true;Mud.act(go,a);return true;});}
+C_('help',['h','?','幫助','說明','指令'],function(a){Mud.help(a);return true;});
+C_('look',['l','看','觀','查看','room','r','觀察'],function(a){
+ if(!S){Mud.sys('尚未開局。輸入 new 開始。');return true;}
+ a=a.replace(/^(at|向)\s*/,'');
+ if(!a||a==='around'||a==='四周'||a==='here'){
+  if(M().cb){Mud.add(cbText(M().cb,'').replace(/\n/g,'<br>'));return true;}
+  Mud.roomStatic();var sc=S.scene;if(sc&&sc.kind!=='hub')Mud.add('<span class="c-dim">（目前的選項見上方；輸入 home 回到行動選單）</span>');return true;}
+ if(a==='me'||a==='自己'||a==='我'){Mud.add(Mud.statText(),'c-pre');return true;}
+ var gi=a.match(/^#?(\d+)$/);if(gi){var bag=Mud.bagList();var g=bag[+gi[1]-1];if(g){Mud.add(esc(MS.gearLine(g))+'<br><span class="c-dim">售價 '+MS.sellPrice(g)+' 金　（equip '+gi[1]+' 穿上 / sell '+gi[1]+' 賣出）</span>');return true;}}
+ var pk=npcPick(a);if(pk.id){Mud.add(Mud.lookNpc(pk.id));return true;}
+ if(pk.list.length){Mud.npcAmbig(pk.list);return true;}
+ for(var k in ITEMS){if(ITEMS[k].n===a||ITEMS[k].n.indexOf(a)>=0){Mud.add(esc(ITEMS[k].n+'：'+(ITEMS[k].d||'')+'　持有 '+(S.p.items[k]||0)));return true;}}
+ for(k in MSK){if(MSK[k].n===a||MSK[k].n.indexOf(a)>=0){Mud.add(esc(MSK[k].n+'：'+MSK[k].d+'　冷卻 '+MSK[k].cd+'　內力 '+MSK[k].mp+(M().sk[k]?'　Lv.'+M().sk[k]:'　（未習得）')));return true;}}
+ for(var sp in THEMES){if(THEMES[sp]===a||SSHORT[sp]===a){Mud.add('<span class="c-dim">'+esc(THEMES[sp])+'：'+esc((AMBIENT[sp]||[''])[0])+'</span>');return true;}}
+ Mud.add('<span class="c-dim">你沒有看到「'+esc(a)+'」。</span>');return true;
+},'target');
+C_('go',['去','走','移','前往','move','walk','到','出','入','out','in'],function(a,raw){
+ var cmd0=(raw.split(/\s+/)[0]||'');
+ if(!a&&(cmd0==='出'||cmd0==='out'))a='out';else if(!a&&(cmd0==='入'||cmd0==='in'))a='in';
+ if(!S){Mud.sys('尚未開局。');return true;}
+ if(!a){var sx=Mud.spotsExits();var h='<span class="c-lab">可去：</span>';for(var i=0;i<sx.length;i++)h+='<span class="mlink" data-cmd="go '+esc(SSHORT[sx[i].sp])+'">'+DIRN[sx[i].d]+' '+esc(SSHORT[sx[i].sp])+'</span>　';Mud.add(h);return true;}
+ var pl=placeFind(a);if(!pl)return false;
+ return Mud.doPlace(pl,false);
+},'place');
+Mud.doPlace=function(pl,auto){
+ if(pl.t==='none'){Mud.add('<span class="c-dim">這個方向沒有出口。（輸入 look 看出口）</span>');return true;}
+ if(pl.t==='travelmenu'){if(Mud.blocked())return true;Mud.act('travelMenu');return true;}
+ if(pl.t==='here'){Mud.add('<span class="c-dim">'+esc(nm(pl.npc))+'就在這座城裡，但行蹤不定，用 talk '+esc(nm(pl.npc))+' 去拜訪。</span>');return true;}
+ if(Mud.blocked())return true;
+ if(pl.t==='spot'){
+  if(pl.sp===S.p.spot){Mud.add('<span class="c-dim">你已經在'+esc(THEMES[pl.sp])+'了。</span>');return true;}
+  Mud.path=[];Mud.act('goSpot',{sp:pl.sp});return true;}
+ if(pl.t==='region'){
+  if(pl.to===S.p.region){if(pl.sp&&pl.sp!==S.p.spot){Mud.path=[];Mud.act('goSpot',{sp:pl.sp});}else Mud.add('<span class="c-dim">你已經在'+esc(regionName(pl.to))+'了。</span>');return true;}
+  Mud.path=[];if(pl.sp)Mud.path.push({t:'spot',sp:pl.sp});
+  Mud.add('<span class="c-dim">（遠行 '+esc(REGIONS[pl.to].n)+'，約 '+travelDays(pl.to)+' 日，途中可能遇險）</span>');
+  Mud.act('travel',{to:pl.to});return true;}
+ return false;
+};
+C_('goto',['gt','travelto','前往地','尋路','去到'],function(a){
+ if(!S){Mud.sys('尚未開局。');return true;}
+ if(!a){Mud.add('<span class="c-dim">goto <地點／地區／人物>，例：goto 邯鄲、goto 書房、goto 嬴政。</span>');return true;}
+ var pl=placeFind(a);if(!pl){Mud.add('<span class="c-dim">不知道「'+esc(a)+'」在哪裡。（map 或 travel 查看）</span>');return true;}
+ return Mud.doPlace(pl,true);
+},'place');
+C_('travel',['遠行','出遠門'],function(a){if(a)return Mud.CMDMAP.goto.f(a);if(Mud.blocked())return true;Mud.act('travelMenu');return true;},'place');
+C_('map',['地圖','m','exits','出口'],function(){
+ if(!S){Mud.sys('尚未開局。');return true;}
+ var h='<div class="c-room">═ '+esc(regionName(S.p.region))+'　地圖 ═</div>'+Mud.mapHtml()+'<div>'+Mud.exitsHtml()+'</div>';
+ h+='<div class="c-dim">天下方位（以'+esc(regionName(S.p.region).replace(/（.*/,''))+'為中心）：</div>';
+ var rx=Mud.regionExits();var line='';for(var i=0;i<rx.length;i++){line+=DIRN[rx[i].d]+' '+REGIONS[rx[i].r].n.replace(/（.*/,'')+'('+rx[i].days+'日)　';}
+ Mud.add(h+'<div class="c-dim">'+esc(line)+'</div>');return true;
+});
+C_('wait',['等','候','等待','sleepwait'],function(a){
+ if(Mud.blocked())return true;var m=a.match(/(\d+)\s*(d|日|天)?/);var n=m?+m[1]:1;var u=m&&m[2]?'d':'h';Mud.act('mWait',{n:n,u:u});return true;
+});
+C_('talk',['談','見','拜訪','交談','chat','t','visit'],function(a){
+ if(!S){Mud.sys('尚未開局。');return true;}
+ if(!a){var np=Mud.npcHere();Mud.add('<span class="c-lab">此處可談話：</span>'+(np.here.length?np.here.map(Mud.npcLink).join('　'):'<span class="c-dim">無人。</span>'));return true;}
+ var pk=npcPick(a);
+ if(!pk.id){if(pk.list.length){Mud.npcAmbig(pk.list);return true;}return false;}
+ if(Mud.blocked())return true;
+ if(locOf(pk.id)!==S.p.region){Mud.add('<span class="c-dim">'+esc(nm(pk.id))+'現在在'+esc(regionName(locOf(pk.id)))+'。<span class="mlink" data-cmd="goto '+esc(nm(pk.id))+'">[前往]</span></span>');return true;}
+ Mud.act('talkMenu',{id:pk.id});return true;
+},'npc');
+var DOTALK={閒談:'chat',聊:'chat',談:'chat',聊天:'chat',送禮:'gift',禮:'gift',禮物:'gift',進言:'advise',獻策:'advise',策:'advise',請教:'learn',學:'learn',學藝:'learn',試探:'probe',探:'probe',心意:'probe',借錢:'askgold',借:'askgold',錢:'askgold',引薦:'askrec',薦:'askrec',愛:'love',表白:'love',示愛:'love',喜歡:'love',結拜:'oath',收服:'recruit',籠絡:'recruit',切磋:'spar',比武:'spar',對飲:'drink',飲酒:'drink',酒:'drink',威嚇:'threat',嚇:'threat',恐嚇:'threat'};
+var DOTALK_N={chat:'閒談',gift:'送禮',advise:'進言獻策',learn:'請教',probe:'試探心意',askgold:'借錢',askrec:'求引薦',love:'表露心意',oath:'結拜',recruit:'籠絡收服',spar:'切磋',drink:'對飲',threat:'威嚇'};
+C_('ask',['問','詢問','請','topic','topics','話題'],function(a){
+ if(!S){Mud.sys('尚未開局。');return true;}
+ if(!a){Mud.add('<span class="c-dim">ask <人物> [話題]　例：ask 嬴政、ask 呂不韋 身世、問李斯 請教</span>');return true;}
+ var hit=npcInText(a);if(!hit)return false;
+ var id=hit.id,topic=hit.rest.replace(/^(關於|有關|about)\s*/,'');
+ if(locOf(id)!==S.p.region){Mud.add('<span class="c-dim">'+esc(nm(id))+'不在此地（'+esc(regionName(locOf(id)))+'）。</span>');return true;}
+ var tl=[];try{tl=dtList('npc',id);}catch(e){}
+ if(!topic){
+  var h='<div class="c-room">與'+esc(nm(id))+'可談的話題</div>';
+  if(tl.length){h+='<div class="c-lab">專屬話題 <span class="c-note">!</span></div>';for(var i=0;i<tl.length;i++)h+='<div>　<span class="mlink" data-cmd="ask '+esc(nm(id))+' '+esc(DTS[tl[i]].ti)+'">'+esc(DTS[tl[i]].ti)+'</span></div>';}
+  h+='<div class="c-lab">一般話題</div><div>　';for(var k in DOTALK_N)h+='<span class="mlink" data-cmd="ask '+esc(nm(id))+' '+esc(DOTALK_N[k])+'">'+esc(DOTALK_N[k])+'</span>　';
+  Mud.add(h+'</div>');return true;}
+ if(Mud.blocked())return true;
+ for(var j=0;j<tl.length;j++){if(DTS[tl[j]].ti.indexOf(topic)>=0||topic.indexOf(DTS[tl[j]].ti)>=0){Mud.act('dt',{id:tl[j],k:'start'});return true;}}
+ for(var w in DOTALK){if(topic.indexOf(w)>=0){Mud.act('doTalk',{id:id,k:DOTALK[w]});return true;}}
+ for(var kk in DOTALK_N){if(DOTALK_N[kk].indexOf(topic)>=0){Mud.act('doTalk',{id:id,k:kk});return true;}}
+ /* 其他自由話題 → 交給自由判定 */
+ Mud.act('freeText',{text:'向'+nm(id)+'請教關於「'+topic+'」的事'});return true;
+},'npc');
+C_('say',['說','講','\'','"','對話','action','do'],function(a){
+ if(!a)return true;
+ return Mud.freeText(a);
+});
+Mud.freeText=function(text){
+ if(!S){Mud.sys('尚未開局。輸入 new 開始新遊戲。');return true;}
+ if(Mud.blocked('free'))return true;
+ Mud.act('freeText',{text:text});return true;
+};
+C_('give',['送','贈','gift','送禮'],function(a){
+ if(!S){Mud.sys('尚未開局。');return true;}
+ var hit=npcInText(a||'');if(!hit)return false;if(Mud.blocked())return true;
+ if(locOf(hit.id)!==S.p.region){Mud.add('<span class="c-dim">'+esc(nm(hit.id))+'不在此地。</span>');return true;}
+ Mud.act('doTalk',{id:hit.id,k:'gift'});return true;
+},'npc');
+C_('fight',['戰','打','f','kill','spar','pk','討伐','尋釁','戰鬥'],function(a){
+ if(Mud.blocked())return true;
+ if(!a){Mud.act('mFight');return true;}
+ var pk=npcPick(a);if(!pk.id){if(pk.list.length){Mud.npcAmbig(pk.list);return true;}return false;}
+ var n=NPC[pk.id];if(locOf(pk.id)!==S.p.region){Mud.add('<span class="c-dim">'+esc(n.n)+'不在此地。</span>');return true;}
+ if(n.wu>=45&&!n.child&&n.tier<=3&&R(pk.id).tr>=20){Mud.act('doTalk',{id:pk.id,k:'spar'});}
+ else Mud.act('duelGo',{id:pk.id});
+ return true;
+},'npc');
+C_('attack',['殺','刺殺','assassinate','ass','行刺','刺'],function(a){
+ if(Mud.blocked())return true;
+ if(!a){Mud.act('assMenu');return true;}
+ var pk=npcPick(a);if(!pk.id){if(pk.list.length){Mud.npcAmbig(pk.list);return true;}return false;}
+ Mud.act('assTarget',{id:pk.id});return true;
+},'npc');
+C_('people',['人物冊','p','人物','npcs'],function(a){if(!S){Mud.sys('尚未開局。');return true;}Mud.add(Mud.peopleText(/all|全/.test(a)));return true;});
+C_('who',['誰','在場'],function(){if(!S){Mud.sys('尚未開局。');return true;}var np=Mud.npcHere();Mud.add('<span class="c-lab">此處：</span>'+(np.here.length?np.here.map(Mud.npcLink).join('　'):'<span class="c-dim">只有你自己。</span>'));return true;});
+C_('work',['當差','duty','上班','值勤'],function(){if(Mud.blocked())return true;Mud.act('duty');return true;});
+C_('job',['營生','賺錢','打工賺錢'],function(){if(Mud.blocked())return true;Mud.act('work');return true;});
+C_('rest',['睡','休息','sleep','養傷','歇'],function(){if(Mud.blocked())return true;Mud.act('rest');return true;});
+var STATK={武:'wu',武力:'wu',wu:'wu',智:'zhi',智力:'zhi',zhi:'zhi',政:'zheng',政治:'zheng',zheng:'zheng',魅:'mei',魅力:'mei',mei:'mei',統:'tong',統率:'tong',tong:'tong',隱:'stealth',隱秘:'stealth',stealth:'stealth'};
+C_('train',['修練','練','練功','訓練','修煉'],function(a){if(Mud.blocked())return true;var k=STATK[a.trim()];if(k)Mud.act('train',{k:k});else Mud.act('trainMenu');return true;},'stat');
+C_('read',['讀書','讀','study'],function(){if(Mud.blocked())return true;Mud.act('readMenu');return true;});
+C_('stat',['狀態','score','sc','st','status','屬性'],function(){if(!S){Mud.sys('尚未開局。');return true;}Mud.add(Mud.statText(),'c-pre');return true;});
+C_('i',['行囊','inv','inventory','bag','背包','物品'],function(){if(!S){Mud.sys('尚未開局。');return true;}Mud.add(Mud.invText(),'c-pre');return true;});
+C_('use',['用','服','吃','使用'],function(a){
+ if(Mud.blocked())return true;if(!a)return false;
+ for(var k in ITEMS){if((ITEMS[k].n===a||ITEMS[k].n.indexOf(a)>=0)&&(S.p.items[k]||0)>0){Mud.act('bagUse',{k:k});return true;}}
+ return false;
+},'item');
+C_('gear',['裝備','equipment','eq'],function(){if(Mud.blocked())return true;Mud.act('mGear');return true;});
+C_('equip',['裝','穿','wear','wield','換上'],function(a){
+ if(!S){Mud.sys('尚未開局。');return true;}
+ var n=parseInt(a,10);var bag=Mud.bagList();if(!n||!bag[n-1]){Mud.add('<span class="c-dim">equip <背包編號>。輸入 i 查看背包。</span>');return true;}
+ if(M().cb)return Mud.blocked();
+ var g=bag[n-1];M().eq[g.s]=g.id;Mud.add('<span class="c-good">你換上了 '+esc(MS.gname(g))+'。</span>');Mud.status();return true;
+});
+C_('sell',['賣','出售','變賣'],function(a){
+ if(!S){Mud.sys('尚未開局。');return true;}if(M().cb)return Mud.blocked();
+ if(/all|全|低/.test(a)){Mud.act('mGearSellAll');return true;}
+ var n=parseInt(a,10);var bag=Mud.bagList();if(!n||!bag[n-1]){Mud.add('<span class="c-dim">sell <背包編號> / sell all。輸入 i 查看背包。</span>');return true;}
+ Mud.act('mSell',{id:bag[n-1].id});return true;
+});
+C_('shop',['鋪','兵器鋪','weapons','店'],function(){if(Mud.blocked())return true;Mud.act('mShop');return true;});
+C_('market',['採購','市集買賣','打聽','store'],function(){if(Mud.blocked())return true;Mud.act('shop');return true;});
+C_('buy',['買','購'],function(a){
+ if(!S){Mud.sys('尚未開局。');return true;}if(M().cb)return Mud.blocked();
+ var n=parseInt(a,10);if(!n){if(MS.shopOK())Mud.act('mShop');else Mud.add('<span class="c-dim">這裡沒有兵器鋪。</span>');return true;}
+ if(!MS.shopOK()){Mud.add('<span class="c-dim">這裡沒有兵器鋪。到市集、城門、客舍或酒肆。</span>');return true;}
+ Mud.act('mBuy',{i:n-1});return true;
+});
+C_('forge',['淬煉','強化','打造','refine'],function(a){
+ if(Mud.blocked())return true;
+ var sl={w:'w',兵器:'w',武器:'w',r:'r',衣甲:'r',甲:'r',h:'h',頭冠:'h',冠:'h',f:'f',履:'f',鞋:'f',a:'a',飾物:'a',飾:'a'}[a.trim()];
+ var n=parseInt(a,10);if(n&&n>=1&&n<=5)sl=GORDER[n-1];
+ if(!sl){Mud.act('mForge');return true;}
+ var g=MS.gearById(M().eq[sl]);if(!g){Mud.add('<span class="c-dim">該欄位沒有裝備。</span>');return true;}
+ Mud.act('mForgeDo',{id:g.id});return true;
+});
+C_('skill',['技能','sk','skills','武功','招式'],function(a){
+ if(!S){Mud.sys('尚未開局。');return true;}
+ var m=M();Mud.add('<div class="c-room">═ 技能 ═（★＝已準備；prep <技能> 準備／卸下，learn <技能> 向師門學習）</div>'+esc(MS.skText()).replace(/\n/g,'<br>')+'<div class="c-dim">姿態：'+({atk:'攻',def:'守',agi:'巧'}[m.stance])+'　stance 攻|守|巧</div>');return true;
+});
+C_('prep',['準備','prepare','卸下','equipskill'],function(a){
+ if(!S){Mud.sys('尚未開局。');return true;}if(M().cb)return Mud.blocked();
+ var id=null;for(var k in MSK){if(MSK[k].n===a||MSK[k].n.indexOf(a)>=0||k===a.toLowerCase())id=k;}
+ if(!id||!M().sk[id]){Mud.add('<span class="c-dim">你沒有學會「'+esc(a)+'」。（skill 查看）</span>');return true;}
+ var m=M();var i=m.prep.indexOf(id);
+ if(id==='slash'){Mud.add('<span class="c-dim">劈砍是基本功，永遠準備著。</span>');return true;}
+ if(i>=0){m.prep.splice(i,1);Mud.add('<span class="c-dim">卸下【'+esc(MSK[id].n)+'】。</span>');}
+ else{if(m.prep.length>=4)m.prep.splice(1,1);m.prep.push(id);Mud.add('<span class="c-good">準備【'+esc(MSK[id].n)+'】。目前：'+esc(m.prep.map(function(x){return MSK[x].n;}).join('、'))+'</span>');}
+ return true;
+});
+C_('learn',['學習','研習','學招'],function(a){
+ if(Mud.blocked())return true;var m=M();if(!m.sect){Mud.add('<span class="c-dim">你還沒有師門。輸入 sect 拜師。</span>');return true;}
+ var id=null;for(var k in MSK){if(MSK[k].n===a||MSK[k].n.indexOf(a)>=0)id=k;}
+ if(!id){Mud.act('mSect');return true;}Mud.act('mSectLearn',{id:id});return true;
+});
+C_('stance',['姿態','式'],function(a){
+ if(!S){Mud.sys('尚未開局。');return true;}
+ var v={攻:'atk',a:'atk',atk:'atk',進攻:'atk',守:'def',d:'def',def:'def',防守:'def',巧:'agi',靈巧:'agi',agi:'agi'}[a.trim().toLowerCase()];
+ if(!v){Mud.add('<span class="c-dim">stance 攻|守|巧　目前：'+({atk:'攻',def:'守',agi:'巧'}[M().stance])+'</span>');return true;}
+ if(M().cb){Mud.act('mcb',{a:'stance',v:v});return true;}
+ M().stance=v;Mud.add('<span class="c-good">姿態：'+({atk:'攻',def:'守',agi:'巧'}[v])+'</span>');return true;
+});
+C_('explore',['探','探索','exp','巡','歷練探索'],function(a){
+ if(!S){Mud.sys('尚未開局。');return true;}if(M().cb)return Mud.blocked();if(Mud.blocked())return true;
+ var n=parseInt(a,10)||1;Mud.act('mExplore',{n:n});return true;
+});
+C_('auto',['自動','a!','autobattle'],function(a){
+ if(!S){Mud.sys('尚未開局。');return true;}
+ if(M().cb){Mud.act('mcb',{a:'auto'});return true;}
+ if(Mud.blocked())return true;Mud.act('mExplore',{n:parseInt(a,10)||5});return true;
+});
+C_('flee',['逃','逃跑','run'],function(){if(!S||!M().cb){Mud.add('<span class="c-dim">現在沒有在戰鬥。</span>');return true;}Mud.act('mcb',{a:'flee'});return true;});
+C_('med',['傷藥','heal'],function(){if(!S||!M().cb){Mud.add('<span class="c-dim">戰鬥外請用 use 傷藥。</span>');return true;}Mud.act('mcb',{a:'med'});return true;});
+C_('idle',['掛機','afk','idle'],function(a){
+ if(!S){Mud.sys('尚未開局。');return true;}if(M().cb)return Mud.blocked();
+ a=a.trim();
+ if(/^(stop|cancel|取消|停)/.test(a)){Mud.act('mIdleStop');return true;}
+ if(!a){Mud.act('mIdle');return true;}
+ if(Mud.blocked())return true;
+ var k=null,st='';
+ if(/歷練|expl|打怪|fight/.test(a))k='expl';else if(/打工|work|賺錢/.test(a))k='work';else if(/修練|train|練/.test(a)){k='train';st=STATK[a.replace(/.*(修練|train|練)\s*/,'').trim()]||'wu';}else if(/當差|duty/.test(a))k='duty';
+ if(!k){Mud.act('mIdle');return true;}Mud.act('mIdleStart',{k:k,st:st});return true;
+},'idle');
+C_('collect',['收','收取','harvest','領掛機'],function(){
+ if(!S){Mud.sys('尚未開局。');return true;}if(Mud.blocked())return true;
+ if(!M().idle){Mud.add('<span class="c-dim">你沒有在掛機。輸入 idle 開始。</span>');return true;}Mud.act('mIdleCollect');return true;
+});
+C_('task',['任務榜','日常','tasks','daily','榜單任務','週常'],function(){if(!S){Mud.sys('尚未開局。');return true;}if(M().cb)return Mud.blocked();Mud.act('mTask');return true;});
+C_('claim',['領','領取','領獎'],function(){if(!S){Mud.sys('尚未開局。');return true;}if(M().cb)return Mud.blocked();Mud.act('mTaskClaim');return true;});
+C_('sect',['師門','門派','拜師'],function(a){
+ if(Mud.blocked())return true;a=a.trim();
+ if(/^(quit|退)/.test(a)){Mud.act('mSectQuit');return true;}
+ if(/^(donate|捐)/.test(a)){Mud.act('mSectDonate');return true;}
+ var rest=a.replace(/^(join|拜入|拜|入)\s*/,'');
+ if(rest){for(var i=0;i<SECT_ORDER.length;i++){var s=SECTS[SECT_ORDER[i]];if(s.n.indexOf(rest)>=0||SECT_ORDER[i]===rest){Mud.act('mSectJoin',{k:SECT_ORDER[i]});return true;}}}
+ Mud.act('mSect');return true;
+});
+C_('rank',['榜','天下榜','排行','top','ranking'],function(a){
+ if(Mud.blocked())return true;var k={pow:'pow',戰力:'pow',fame:'fame',聲望:'fame',wise:'wise',智謀:'wise',rank:'rank',功名:'rank'}[a.trim()]||'pow';Mud.act('mRank',{k:k});return true;
+});
+C_('quests',['任務','q','quest','任務簿','journal'],function(){if(!S){Mud.sys('尚未開局。');return true;}Mud.add(Mud.questText(),'c-pre');return true;});
+C_('career',['仕途','官階','晉升','career'],function(){if(Mud.blocked())return true;Mud.act('careerMenu');return true;});
+C_('jue',['爵位','爵','軍功'],function(){if(Mud.blocked())return true;Mud.act('jueMenu');return true;});
+C_('book',['人生簿','日記','diary','恩仇錄','年表'],function(){if(!S){Mud.sys('尚未開局。');return true;}openPanel('book');return true;});
+C_('log',['日誌','history','news','傳聞','近聞'],function(){
+ if(!S){Mud.sys('尚未開局。');return true;}var L=S.log.slice(-14);var h='<div class="c-room">═ 最近的事 ═</div>';
+ for(var i=0;i<L.length;i++)h+='<div class="c-dim">'+esc(dateFull(L[i].d))+'　'+esc(L[i].t)+'</div>';
+ Mud.add(h);return true;
+});
+C_('time',['date','時間','日期','時辰'],function(){if(!S)return true;Mud.add('<span class="c-dim">'+esc(dateFull())+'　'+esc(Mud.weatherText())+'</span>');return true;});
+C_('love',['情緣','追求','愛','romance'],function(a){
+ if(!S){Mud.sys('尚未開局。');return true;}
+ if(!a){var h='<span class="c-lab">可結緣的人（love <名字>）：</span>';var any=false;var all=npcAll();for(var i=0;i<all.length;i++){var id=all[i].id;try{if(locOf(id)===S.p.region&&loveOK(id)){h+=Mud.npcLink(id)+'　';any=true;}}catch(e){}}
+  Mud.add(any?h:'<span class="c-dim">此地暫時沒有你能追求的人。</span>');return true;}
+ var pk=npcPick(a);if(!pk.id){if(pk.list.length){Mud.npcAmbig(pk.list);return true;}return false;}
+ if(Mud.blocked())return true;Mud.act('loveMenu',{id:pk.id});return true;
+},'npc');
+nodeCmd('seduce',['風月','seduction','魅惑','歌舞'],'seduceMenu');
+C_('plead',['求情','懇求','求饒'],function(){
+ if(!S){Mud.sys('尚未開局。');return true;}
+ var ch_=(Mud.cur&&Mud.cur.ch)||[];for(var i=0;i<ch_.length;i++){if(/求情|懇求|哀求|求饒|下跪|挺身/.test(ch_[i].t)){Mud.pick(i);return true;}}
+ Mud.add('<span class="c-dim">目前沒有可求情的場合（受罰或事發時，選項中會出現求情）。</span>');return true;
+});
+C_('bribe',['賄賂','打點','行賄'],function(){
+ if(!S){Mud.sys('尚未開局。');return true;}
+ var ch_=(Mud.cur&&Mud.cur.ch)||[];for(var i=0;i<ch_.length;i++){if(/賄賂|打點|行賄|送錢/.test(ch_[i].t)){Mud.pick(i);return true;}}
+ if(Mud.blocked())return true;Mud.act('bribePromo');return true;
+});
+nodeCmd('assassinate',['刺殺選單','暗殺','武鬥'],'assMenu');
+nodeCmd('scheme',['計謀','謀略','plot'],'schemeMenu');
+C_('letter',['寫信','密信','信','mail'],function(){if(Mud.blocked())return true;Mud.act('pickNpc',{pu:'letter',pg:0});return true;});
+nodeCmd('revenge',['復仇','報仇','vendetta'],'rvMenu');
+C_('favor',['請託','求助','托'],function(a){
+ if(Mud.blocked())return true;var pk=npcPick(a||'');if(!pk.id){Mud.add('<span class="c-dim">favor <人物名>：請某人幫一個忙。</span>');return true;}Mud.act('favorMenu',{id:pk.id});return true;
+},'npc');
+nodeCmd('goal',['志向','目標'],'goalMenu');
+nodeCmd('route',['路線','前程','routes'],'routeMenu');
+C_('tutorial',['教學','新手','tut','guide'],function(){if(Mud.blocked())return true;Mud.act('tut',{k:0});return true;});
+nodeCmd('hermit',['歸隱','隱居'],'hermitAsk');
+C_('home',['hub','back','b','行動','選單','返回','回'],function(){
+ if(!S){Mud.sys('尚未開局。');return true;}
+ if(M().cb)return Mud.blocked();var sc=S.scene;if(sc&&(sc.kind==='event'||sc.kind==='ending'||sc.kind==='loading')){return Mud.blocked();}
+ Mud.act('hub');return true;
+});
+C_('save',['存','存檔','s!'],function(a){
+ if(!S){Mud.sys('尚未開局。');return true;}
+ var n=a.trim()==='auto'?'auto':(parseInt(a,10)||1);if(n!=='auto'&&(n<1||n>5)){Mud.add('<span class="c-dim">存檔槽為 1~5。</span>');return true;}
+ var ok=saveSlot(n,true);Mud.add(ok?'<span class="c-good">已存檔至 '+(n==='auto'?'自動存檔':'存檔 '+n)+'。</span>':'<span class="c-bad">存檔失敗（空間不足或私密瀏覽）。請用 export 匯出備份。</span>');return true;
+});
+C_('load',['讀','讀檔','l!','loadgame'],function(a){
+ var n=a.trim()==='auto'?'auto':parseInt(a,10);
+ if(!n){var lat=latestSlot();if(lat===null){Mud.add('<span class="c-dim">沒有存檔。</span>');return true;}n=lat;}
+ loadSlot(n);return true;
+});
+C_('saves',['存檔列表','slots'],function(){
+ var ks=[1,2,3,4,5,'auto'],h='<div class="c-room">═ 存檔槽 ═</div>';
+ for(var i=0;i<ks.length;i++){var m=slotMeta(ks[i]);h+='<div>'+(ks[i]==='auto'?'自動':ks[i])+'　'+(m?esc((m.name||'?')+'·'+(m.date||'')):'<span class="c-dim">（空）</span>')+(m&&!m.bad?'　<span class="mlink" data-cmd="load '+ks[i]+'">[讀取]</span>':'')+'</div>';}
+ Mud.add(h);return true;
+});
+C_('export',['匯出','匯入','import','io'],function(){openPanel('save');return true;});
+C_('settings',['設定','set','ai','options','config','adult','成人'],function(){openPanel('set');return true;});
+C_('endings',['結局','結局圖鑑'],function(){openPanel('end');return true;});
+C_('ach',['成就','achievements'],function(){if(!S){Mud.sys('尚未開局。');return true;}openPanel('ach');return true;});
+C_('menu',['主選單','title'],function(){showMenu();return true;});
+C_('new',['新遊戲','開始','newgame','start'],function(){wizardOpen();return true;});
+C_('continue',['繼續','cont','續'],function(){var l=latestSlot();if(l===null){Mud.add('<span class="c-dim">沒有存檔。輸入 new 開始。</span>');return true;}loadSlot(l);return true;});
+C_('theme',['配色','color','顏色'],function(a){
+ var v={green:'green',綠:'green',綠色:'green',amber:'amber',琥珀:'amber',橙:'amber',white:'white',白:'white',白字:'white'}[a.trim().toLowerCase()];
+ if(!v){Mud.add('<span class="c-dim">theme green | amber | white　目前：'+SET.mtheme+'</span>');return true;}
+ SET.mtheme=v;saveSettings();Mud.applyLookClasses();Mud.add('<span class="c-good">配色：'+v+'</span>');return true;
+});
+C_('font',['字體','字型','字號','size'],function(a){
+ a=a.trim();var f=SET.mfs||16;if(a==='+'||a==='大')f++;else if(a==='-'||a==='小')f--;else if(/^\d+$/.test(a))f=+a;else{Mud.add('<span class="c-dim">font + | - | 12~26　目前 '+f+'</span>');return true;}
+ SET.mfs=clamp(f,12,26);saveSettings();Mud.applyLookClasses();Mud.add('字體大小 '+SET.mfs);return true;
+});
+C_('speed',['打字速度','typewriter','tw'],function(a){
+ if(!/^\d$/.test(a.trim())){Mud.add('<span class="c-dim">speed 0~5（0 = 關閉打字機）　目前 '+SET.mtw+'</span>');return true;}
+ SET.mtw=clamp(+a,0,5);saveSettings();Mud.add('打字機速度 '+SET.mtw);return true;
+});
+C_('ui',['介面','interface','gfx','graphic'],function(a,raw){
+ var v=a.trim().toLowerCase();if((raw.split(/\s+/)[0]||'').toLowerCase()==='gfx')v='gfx';
+ if(v==='gfx'||v==='圖形'||v==='舊'||v==='graphic'){Mud.setUI('gfx');return true;}
+ if(v==='mud'||v==='文字'){Mud.add('已是 MUD 介面。');return true;}
+ Mud.add('<span class="c-dim">ui mud | gfx　目前：'+SET.ui+'</span>');return true;
+});
+C_('img',['小圖','image','pic'],function(a){var v=/on|開|1|true/i.test(a);var off=/off|關|0|false/i.test(a);if(!v&&!off)v=!SET.mimg;else if(off)v=false;SET.mimg=v;saveSettings();Mud.add('場景小圖：'+(v?'開':'關'));return true;});
+C_('sound',['音效','sfx','聲音'],function(a){var v=/on|開|1/i.test(a);var off=/off|關|0/i.test(a);if(!v&&!off)v=!SET.sfx;else if(off)v=false;SET.sfx=v;saveSettings();try{SND.vol();}catch(e){}Mud.add('音效：'+(v?'開':'關'));return true;});
+C_('bind',['快捷','keys','chip'],function(a){
+ a=a.trim();if(a==='reset'||a==='還原'){SET.mkeys='';saveSettings();Mud.chips();Mud.add('快捷列已還原。');return true;}
+ var m=a.match(/^(\d+)\s+(.+)$/);
+ if(!m){Mud.add('<span class="c-dim">bind <位置> <指令>，例：bind 1 explore 3　bind reset 還原　目前：'+esc(Mud.chipList().join(' | '))+'</span>');return true;}
+ var l=Mud.chipList().slice();var i=clamp(+m[1],1,12)-1;while(l.length<i)l.push('look');l[i]=m[2].trim().replace(/\|/g,' ');SET.mkeys=l.join('|');saveSettings();Mud.chips();Mud.add('快捷 '+(i+1)+' → '+esc(l[i]));return true;
+});
+C_('clear',['清屏','cls','清除'],function(){Mud.clear();return true;});
+C_('panel',['側欄','side','sidebar'],function(){Mud.toggleSide();return true;});
+C_('again',['!!','重複','.'],function(){var l=Mud.hist[Mud.hist.length-2];if(l)Mud.exec(l,true);else Mud.add('<span class="c-dim">沒有上一個指令。</span>');return true;});
+var NA_CMDS=['collect','claim','rest','work','job','stat','i','quests','career','jue','book','log','time','seduce','home','who','menu','new','continue','saves','export','settings','endings','ach','clear','panel','again','flee','med','tutorial','hermit','revenge','goal','route','scheme','assassinate','letter','gear','shop','market','map','task','people'];
+Mud.CMDMAP={};Mud.ALIAS={};Mud.CJK=[];
+(function(){
+ for(var i=0;i<Mud.CMDS.length;i++){var c=Mud.CMDS[i];Mud.CMDMAP[c.n]=c;c.na=NA_CMDS.indexOf(c.n)>=0;Mud.ALIAS[c.n.toLowerCase()]=c;
+  for(var j=0;j<c.al.length;j++){var a=c.al[j];if(!Mud.ALIAS[a.toLowerCase()])Mud.ALIAS[a.toLowerCase()]=c;if(/[^\x00-\x7f]/.test(a)&&Mud.CJK.indexOf(a)<0)Mud.CJK.push(a);}
+  if(/[^\x00-\x7f]/.test(c.n)&&Mud.CJK.indexOf(c.n)<0)Mud.CJK.push(c.n);}
+ Mud.CJK.sort(function(a,b){return b.length-a.length;});
+})();
+Mud.parse=function(raw){
+ var m=raw.match(/^(\S+)(?:\s+([\s\S]*))?$/);if(!m)return null;
+ var t=m[1].toLowerCase();var rest=(m[2]||'').replace(/^\s+|\s+$/g,'');
+ if(DIRALIAS[t]&&!rest&&!Mud.ALIAS[t]){return {cmd:Mud.CMDMAP.go,arg:t};}
+ if(DIRALIAS[t]&&!rest&&t.length<=2){return {cmd:Mud.CMDMAP.go,arg:t};}
+ if(raw.charAt(0)==='\''||raw.charAt(0)==='"'){return {cmd:Mud.CMDMAP.say,arg:raw.slice(1).trim()};}
+ if(Mud.ALIAS[t]&&(rest||!/[^\x00-\x7f]/.test(t)||true)){
+  /* 純 CJK 單詞也直接視為指令；帶長句者交給 handler 決定是否 fall through */
+  var cc=Mud.ALIAS[t];if(rest&&cc.na&&/[^\x00-\x7f]/.test(t))return null;
+  return {cmd:cc,arg:rest};
+ }
+ /* 無空格的 CJK：去市集、談嬴政、問李斯身世 */
+ for(var i=0;i<Mud.CJK.length;i++){var al=Mud.CJK[i];if(raw.indexOf(al)===0&&raw.length>al.length){var c3=Mud.ALIAS[al.toLowerCase()];if(c3.na)continue;return {cmd:c3,arg:raw.slice(al.length).replace(/^\s+/,'')};}}
+ return null;
+};
+Mud.matchChoice=function(raw){
+ var ch_=(Mud.cur&&Mud.cur.ch)||[];if(!ch_.length)return false;
+ var nrm=function(s){return String(s).replace(/[^\u4e00-\u9fa5A-Za-z0-9]/g,'').toLowerCase();};
+ var q=nrm(raw);if(q.length<2)return false;
+ var hit=[];for(var i=0;i<ch_.length;i++){var l=nrm(ch_[i].t);if(l===q){hit=[i];break;}if(l.indexOf(q)>=0)hit.push(i);}
+ if(hit.length===1){Mud.pick(hit[0],true);return true;}
+ if(hit.length>1){var h='<span class="c-dim">有多個選項符合：</span><div class="mchs">';for(i=0;i<hit.length&&i<8;i++)h+='<button type="button" class="mch" data-i="'+hit[i]+'"><b>'+(hit[i]+1)+'</b>'+esc(ch_[hit[i]].t)+'</button>';Mud.add(h+'</div>');return true;}
+ return false;
+};
+Mud.exec=function(raw,echo){
+ raw=String(raw==null?'':raw).replace(/^\s+|\s+$/g,'');if(!raw)return 'empty';
+ Mud.flush();
+ if(echo)Mud.add('&gt; '+esc(raw),'c-echo');
+ try{SND.init();}catch(e){}
+ var res='ok';
+ try{res=Mud.dispatch(raw);}catch(e){if(window.console)console.error('mud cmd',e);Mud.add('<span class="c-bad">指令出錯：'+esc(e&&e.message||String(e))+'</span>');res='error';}
+ try{Mud.status();}catch(e2){}
+ Mud.lastRes=res;return res;
+};
+Mud.dispatch=function(raw){
+ if(/^\d{1,3}$/.test(raw)){
+  var i=parseInt(raw,10)-1;
+  if(Mud.cur&&Mud.cur.ch&&Mud.cur.ch[i]){Mud.pick(i,true);return 'pick';}
+  Mud.add('<span class="c-dim">沒有編號 '+esc(raw)+' 的選項。</span>');return 'bad';
+ }
+ var p=Mud.parse(raw);
+ if(p){var r=p.cmd.f(p.arg,raw);if(r!==false)return p.cmd.n;}
+ if(S&&Mud.matchChoice(raw))return 'choice';
+ if(!S){Mud.add('<span class="c-dim">還沒有開始遊戲。可用指令：new（新遊戲）、load（讀檔）、settings（設定/AI）、help。</span>');return 'nogame';}
+ Mud.freeText(raw);return 'free';
+};
+/* ---- 補全 ---- */
+Mud.suggest=function(v){
+ var out=[];var raw=v;var low=v.toLowerCase();
+ var sp=raw.indexOf(' ');
+ var pushU=function(s){if(out.indexOf(s)<0)out.push(s);};
+ if(sp<0){
+  /* 指令名 */
+  for(var i=0;i<Mud.CMDS.length;i++){var c=Mud.CMDS[i];if(c.n.indexOf(low)===0)pushU(c.n);}
+  for(i=0;i<Mud.CMDS.length;i++){c=Mud.CMDS[i];for(var j=0;j<c.al.length;j++){if(c.al[j].toLowerCase().indexOf(low)===0&&c.al[j].toLowerCase()!==low)pushU(c.n==='go'||c.at?c.al[j]+' ':c.al[j]);}}
+  /* 無空格 CJK 指令+參數 */
+  for(i=0;i<Mud.CJK.length;i++){var al=Mud.CJK[i];if(raw.indexOf(al)===0&&raw.length>al.length&&Mud.ALIAS[al.toLowerCase()].at){var part=raw.slice(al.length);var cs=Mud.argCands(Mud.ALIAS[al.toLowerCase()].at,part,'');for(var k=0;k<cs.length;k++)pushU(al+' '+cs[k]);break;}}
+  return out.slice(0,6);
+ }
+ var cmd=raw.slice(0,sp).toLowerCase();var arg=raw.slice(sp+1);var c2=Mud.ALIAS[cmd];
+ if(!c2)return [];
+ var cs2=Mud.argCands(c2.at,arg,cmd);
+ for(var q=0;q<cs2.length;q++)pushU(raw.slice(0,sp)+' '+cs2[q]);
+ return out.slice(0,6);
+};
+Mud.argCands=function(type,arg,cmd){
+ var out=[];if(!S)return out;arg=arg.replace(/^\s+/,'');var la=arg.toLowerCase();
+ if(type==='npc'||(type==='target')){
+  var all=npcAll(),hereIds={};var np=Mud.npcHere();for(var i=0;i<np.here.length;i++)hereIds[np.here[i]]=1;
+  var cand=[];for(i=0;i<all.length;i++){var n=all[i];if(!(isKnown(n.id)||locOf(n.id)===S.p.region))continue;
+   if(!la||n.n.indexOf(arg)>=0||(n.c&&n.c.indexOf(arg)===0)||n.id.indexOf(la)===0){cand.push([n,(hereIds[n.id]?0:(locOf(n.id)===S.p.region?1:2))+(n.n.indexOf(arg)===0?-0.5:0)]);}}
+  cand.sort(function(a,b){return a[1]-b[1];});
+  for(i=0;i<cand.length&&out.length<5;i++)out.push(cand[i][0].n);
+  if(cmd==='ask'||cmd==='問'){var hit=npcInText(arg);if(hit&&hit.rest===''&&/\s$/.test(arg)||hit&&arg.indexOf(' ')>0){var tl=[];try{tl=dtList('npc',hit.id);}catch(e){}out=[];for(i=0;i<tl.length;i++)out.push(nm(hit.id)+' '+DTS[tl[i]].ti);for(var kk in DOTALK_N)if(out.length<8)out.push(nm(hit.id)+' '+DOTALK_N[kk]);}}
+ }
+ if(type==='place'){
+  var reg=REGIONS[S.p.region];
+  for(i=0;i<reg.sub.length;i++){var s=reg.sub[i];if(s!==S.p.spot&&(!la||SSHORT[s].indexOf(arg)>=0||THEMES[s].indexOf(arg)>=0))out.push(SSHORT[s]);}
+  for(var d in DIRN){if(d.indexOf(la)===0&&la)out.push(d);}
+  for(i=0;i<REGION_IDS.length;i++){var rn=REGIONS[REGION_IDS[i]].n.replace(/（.*/,'');if(REGION_IDS[i]!==S.p.region&&(!la||rn.indexOf(arg)>=0))out.push(rn);}
+ }
+ if(type==='idle'){var ks=['歷練','打工','修練 武力','修練 智力','當差','stop'];for(i=0;i<ks.length;i++)if(!la||ks[i].indexOf(arg)>=0)out.push(ks[i]);}
+ if(type==='stat'){var st=['武力','智力','政治','魅力','統率','隱秘'];for(i=0;i<st.length;i++)if(!la||st[i].indexOf(arg)>=0)out.push(st[i]);}
+ if(type==='item'){for(var k in ITEMS){if((S.p.items[k]||0)>0&&(!la||ITEMS[k].n.indexOf(arg)>=0))out.push(ITEMS[k].n);}}
+ return out.slice(0,8);
+};
+Mud.pick=function(i,noEcho){
+ var cur=Mud.cur;if(!cur||!cur.ch||!cur.ch[i])return false;
+ var c=cur.ch[i];Mud.flush();
+ if(!noEcho)Mud.add('<span>&gt; '+(i+1)+' '+esc(c.t)+'</span>','c-echo');
+ else Mud.add('<span class="c-dim">→ '+esc(c.t)+'</span>');
+ try{SND.sfx('click');}catch(e){}
+ if(c.fn){c.fn();}else{choose(c);}
+ return true;
+};
+/* 啟動掛接：boot 前完成介面初始化 */
+var _bindUI0=bindUI;
+bindUI=function(){
+ _bindUI0();
+ Mud.on=(SET.ui!=='gfx');Mud.ready=true;
+ Mud.init();Mud.moveExt(Mud.on);Mud.applyLookClasses();
+ if(Mud.on){if(UIs.animT){clearInterval(UIs.animT);UIs.animT=null;}}
+};
 
 /* ---- 99_boot.js ---- */
 /* ===== 啟動（最後載入）===== */
